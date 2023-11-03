@@ -86,9 +86,9 @@ class Game(Config):
 
             # self.blit_platform()
             self.blit_platforms()
-            self.draw_heepbox(EColors.ROJO.value)      #--- dibujar los rectangulos de las imagenes ---
+            self.draw_hitbox(EColors.ROJO.value)      #--- dibujar los rectangulos de las imagenes ---
 
-            self.hero.update(self.screen, self.pressed_keys)
+            self.hero.update(self.screen, self.pressed_keys, self.platforms) # Agregar una lista de dict de plataformas como parametro
 
             # self.blit_hero()
 
@@ -111,8 +111,12 @@ class Game(Config):
         text = font.render(f"Score: {text}", True, EColors.BLANCO.value)
         self.screen.blit(text, (0, 0))
 
-    def draw_heepbox(self, color):
+    def draw_hitbox(self, color):
         if self.get_mode():
+            for pl in self.platforms:
+                py.draw.rect(self.screen, color, pl, 3)
+
             py.draw.rect(self.screen, color, self.hero.rect, 3)
+
 
     # --------------MODIFICAR 

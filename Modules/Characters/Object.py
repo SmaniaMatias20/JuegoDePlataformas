@@ -4,7 +4,7 @@ from Modules.Values.EOrientation import EOrientation
 
 class Object:
 
-    def __init__(self, size_surface, position,path=None) -> None:
+    def __init__(self, size_surface, position, path=None) -> None:
         # self.speed = 0
 
         # Version pre imagenes.

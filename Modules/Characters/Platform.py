@@ -20,10 +20,12 @@ class Platform(Object):
         # Plataforma principal
         platform = Platform((800, 56), (0, 445))
         platform_b = Platform((800, 56), (0, 0))
+        platform_c = Platform((75,30), (100, 350))
 
         
         list.append(platform)
         list.append(platform_b)
+        list.append(platform_c)
 
 
 
