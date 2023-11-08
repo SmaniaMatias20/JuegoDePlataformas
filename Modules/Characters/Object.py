@@ -4,16 +4,24 @@ from Modules.Values.EOrientation import EOrientation
 
 class Object:
 
-    def __init__(self, size_surface, position, path=None) -> None:
-        # self.speed = 0
+    def __init__(self, size_surface, position, image=None) -> None:
 
-        # Version pre imagenes.
-        if path == None:
+        # Reemplazar por un try-except
+        if type(image) == py.surface.Surface:
+            self.image = image
+        elif image == None:
             self.image = py.Surface(size_surface)
         else:
             # self.image = self.load_image(path, size_surface)
-            self.image = py.image.load(path)
+            self.image = py.image.load(image)
             self.image = py.transform.scale(self.image, size_surface)
+
+        # if path == None:
+        #     self.image = py.Surface(size_surface)
+        # else:
+        #     # self.image = self.load_image(path, size_surface)
+        #     self.image = py.image.load(path)
+        #     self.image = py.transform.scale(self.image, size_surface)
 
         self.rect = self.image.get_rect()
         
@@ -22,7 +30,7 @@ class Object:
 
         self.direction = EOrientation.IDLE
         
-        self.set_speed(0)
+        # self.set_speed(0)
 
     def load_image(self, path, size_surface):
         image = py.image.load(path)

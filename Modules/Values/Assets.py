@@ -29,32 +29,5 @@ HERO_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-1.p
 HERO_WALK_RIGHT_B = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-2.png')
 HERO_JUMP = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-3.png')
 
-HERO_QUIET = py.image.load(HERO_QUIET)
-HERO_WALK_RIGHT_A = py.image.load(HERO_WALK_RIGHT_A)
-HERO_WALK_RIGHT_B = py.image.load(HERO_WALK_RIGHT_B)
-HERO_JUMP = py.image.load(HERO_JUMP)
-
-# PLATFORM_IMAGE = py.image.load(PLATFORM_IMAGE)
-
-
-hero_quiet = [
-    HERO_QUIET
-]
-
-hero_walk_right = [
-    HERO_WALK_RIGHT_A,
-    HERO_WALK_RIGHT_B
-
-]
-
-hero_walk_left = [
-    HERO_WALK_RIGHT_A,
-    HERO_WALK_RIGHT_B
-]
-
-hero_jump = [
-    HERO_JUMP
-
-]
 
 

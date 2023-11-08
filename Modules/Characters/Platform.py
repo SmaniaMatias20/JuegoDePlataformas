@@ -6,27 +6,26 @@ from Modules.Values.Assets import PLATFORM_IMAGE
 class Platform(Object):
 
     def __init__(self, size, position=(0,0)) -> None:
+
+        # self.image = self.load_image(PLATFORM_IMAGE, size)
+
         super().__init__(size, position, PLATFORM_IMAGE)
 
-    def blit(self, screen):
-        # screen.blit(self.image, self.image.rect)
-        super().blit(screen)
+    # def blit(self, screen):
+    #     # screen.blit(self.image, self.image.rect)
+    #     super().blit(screen)
 
 
-    @staticmethod
-    def create_list():
-        list = []
+    # @staticmethod
+    # def create_list():
+    #     list = []
 
-        # Plataforma principal
-        platform = Platform((800, 56), (0, 445))
-        platform_b = Platform((800, 56), (0, 0))
-        platform_c = Platform((75,30), (100, 350))
+    #     platform = Platform((800, 56), (0, 445))
+    #     platform_b = Platform((800, 56), (0, 0))
+    #     platform_c = Platform((75,30), (100, 350))
 
+    #     list.append(platform)
+    #     list.append(platform_b)
+    #     list.append(platform_c)
         
-        list.append(platform)
-        list.append(platform_b)
-        list.append(platform_c)
-
-
-
-        return list
+    #     return list

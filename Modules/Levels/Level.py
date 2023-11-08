@@ -1,10 +1,13 @@
 import pygame as py
+from Modules.Values.EColors import EColors
+from Modules.Values.Assets import *
+from Modules.Values.EColors import *
+from Modules.Characters.Hero import *
 
-# from modulos.values.assets import BACKGROUND_IMAGE
 FPS = 60
 
-class Config:
-
+class Level:
+    
     def __init__(self, size, FPS, caption="Title", icon=""):
         py.mixer.init()
         
@@ -13,8 +16,36 @@ class Config:
         self.running = True
         self.FPS = FPS
         self.clock = py.time.Clock()
-        self.set_caption(caption)
+        self.set_caption("Ragnarok")
         self.DEBUG = False
+
+
+    def update(self, list_events):
+        for event in list_events:
+                if event.type == py.QUIT:
+                    self.running = False
+                elif event.type == py.KEYDOWN:
+                    if event.key == py.K_TAB:
+                        self.change_mode()
+
+        self.fill_screen()
+        
+        
+    def get_pressed(self):
+        self.pressed_keys = py.key.get_pressed()  
+    
+    def show_score(self, text):
+        # TODO: Hacer reutilizable
+        font = py.font.SysFont('Arial', 30)
+        text = font.render(f"Score: {text}", True, EColors.BLANCO.value)
+        self.screen.blit(text, (0, 0))
+
+    def draw_hitbox(self):
+        if self.get_mode():
+            for pl in self.platforms:
+                py.draw.rect(self.screen, EColors.AZUL.value , pl, 3)
+
+            py.draw.rect(self.screen, EColors.AZUL.value, self.hero.rect, 3)  
 
     def set_caption(self, caption):
         py.display.set_caption(caption)
@@ -59,4 +90,6 @@ class Config:
     def get_mode(self):
         return self.DEBUG
     
+    
+
     

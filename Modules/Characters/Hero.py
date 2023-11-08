@@ -8,23 +8,19 @@ from Modules.Characters.Platform import *
 class Hero(Object):
 
     def __init__(self, size, position=(0,0), speed=5) -> None:
-        super().__init__(size, position) # Mirar lo del path, ojo
         
         self.animations = self.set_animations()
         self.state = "Quiet"
-        self.current_animation = self.animations["Quiet"]
+        self.current_animation = self.animations[self.state]
         self.step_counter = 0
-
         self.move_y = 0
         self.jump_power = -12
         self.jump_speed_limit = 12
         self.gravity = 1
         self.jump = False
-
-
-
         self.points = 0
         self.set_speed(speed)
+        super().__init__(size, position, self.current_animation[self.step_counter]) 
 
 
     def update(self, screen, pressed_keys, platforms):
@@ -59,7 +55,7 @@ class Hero(Object):
     def change_state(self, pressed_keys):
 
         if pressed_keys[py.K_RIGHT]:
-                self.state = "Right"
+            self.state = "Right"
         elif pressed_keys[py.K_LEFT]:
             self.state = "Left"
         elif pressed_keys[py.K_UP]:
@@ -71,13 +67,25 @@ class Hero(Object):
         self.speed = speed
 
     def set_animations(self):
+        hero_quiet = []
+        hero_walk_right = []
+        hero_jump = []  
+
+        image_hero_quiet = self.load_image(HERO_QUIET, (50, 50))
+        image_hero_walk_right_a = self.load_image(HERO_WALK_RIGHT_A, (50, 50))
+        image_hero_walk_right_b = self.load_image(HERO_WALK_RIGHT_B, (50, 50))
+        image_hero_jump = self.load_image(HERO_JUMP, (50, 50))
+
+        hero_quiet.append(image_hero_quiet)
+        hero_walk_right.append(image_hero_walk_right_a)
+        hero_walk_right.append(image_hero_walk_right_b)
+        hero_jump.append(image_hero_jump)
+
         animations = {}
         animations["Quiet"] = hero_quiet
         animations["Right"] = hero_walk_right
-        animations["Left"]  = flip_images(hero_walk_left)
+        animations["Left"]  = flip_images(hero_walk_right)
         animations["Up"] = hero_jump
-
-        rescale_images(animations, 50, 50)
 
         return animations
 
@@ -86,7 +94,6 @@ class Hero(Object):
         if self.step_counter >= long:
             self.step_counter = 0
         
-
         screen.blit(self.current_animation[self.step_counter], self.rect)
         self.step_counter += 1
 
@@ -150,6 +157,6 @@ class Hero(Object):
     #     music.set_volume(0.5)
     #     music.play()
 
-    def blit(self, screen):
+    # def blit(self, screen):
         # screen.blit(self.mouth.image, self.mouth.rect)
-        super().blit(screen)
+        # super().blit(screen)
