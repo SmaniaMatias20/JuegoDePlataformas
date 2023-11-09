@@ -10,14 +10,16 @@ class Level:
     
     def __init__(self, size, FPS, caption="Title", icon=""):
         py.mixer.init()
-        
+
         self.size = size
         self.screen = py.display.set_mode(self.size)
         self.running = True
         self.FPS = FPS
         self.clock = py.time.Clock()
         self.set_caption("Ragnarok")
+        self.set_icon(GAME_ICON)
         self.DEBUG = False
+        # self.time = py.time.get_ticks()
 
 
     def update(self, list_events):
@@ -31,22 +33,25 @@ class Level:
         self.fill_screen()
         
         
+        
     def get_pressed(self):
         self.pressed_keys = py.key.get_pressed()  
     
     def show_score(self, text):
         # TODO: Hacer reutilizable
         font = py.font.SysFont('Arial', 30)
-        text = font.render(f"Score: {text}", True, EColors.BLANCO.value)
+        text = font.render(f"score: {text}", True, EColors.BLANCO.value)
         self.screen.blit(text, (0, 0))
 
     def draw_hitbox(self):
         if self.get_mode():
             for pl in self.platforms:
-                py.draw.rect(self.screen, EColors.AZUL.value , pl, 3)
+                for key in pl.rect:
+                    py.draw.rect(self.screen, EColors.ROJO.value, pl.rect[key], 3)
 
-            py.draw.rect(self.screen, EColors.AZUL.value, self.hero.rect, 3)  
-
+            for key in self.hero.rect:
+                    py.draw.rect(self.screen, EColors.VERDE.value, self.hero.rect[key], 3)
+            
     def set_caption(self, caption):
         py.display.set_caption(caption)
 

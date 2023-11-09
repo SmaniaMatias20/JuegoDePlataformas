@@ -18,7 +18,7 @@ class LevelTwo(Level):
         self.set_platforms()
         self.set_hero()
         # self.set_falling_objects(28)        
-        self.set_icon(GAME_ICONO)
+        self.set_icon(GAME_ICON)
         self.pressed_keys = []
 
         # self.set_music(MARIO_MUSIC)

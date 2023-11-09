@@ -1,7 +1,9 @@
 import pygame
 from pygame.locals import *
-from GUI_widget import *
+
 import unicodedata
+
+from Modules.Gui.GUI_widget import Widget
 
 FPS = 18
 #si creo un att del self en un metodo, eso impacta sobre la clase actual, o lo crea a nivel de la jerarquia de clases? por ej self.slave

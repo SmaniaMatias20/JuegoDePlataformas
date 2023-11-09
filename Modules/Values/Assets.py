@@ -1,7 +1,6 @@
 import os
 import pygame as py
 
-
 def rescale_images(animations: dict, widht: int, high: int):
     for key in animations:
         for i in range(len(animations[key])):
@@ -18,7 +17,7 @@ def flip_images(images: list):
 
 # MARIO_MUSIC = os.path.join('assets', 'music', 'mario_fondo.flac')
 # MARIO_COIN_SOUND = os.path.join('assets', 'music', 'mario-coin.mp3')
-GAME_ICONO = os.path.join('Modules','Assets', 'Images', 'icon.png') 
+GAME_ICON = os.path.join('Modules','Assets', 'Images', 'icon.png') 
 PLATFORM_IMAGE = os.path.join('Modules','Assets', 'Images', 'Atmosphere', 'platform.png') 
 BACKGROUND_IMAGE = os.path.join('Modules','Assets', 'Images', 'Atmosphere', 'background.jpg')
 
@@ -29,5 +28,9 @@ HERO_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-1.p
 HERO_WALK_RIGHT_B = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-2.png')
 HERO_JUMP = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-3.png')
 
+# ENEMY IMAGE
+ENEMY_QUIET = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy.png')
+ENEMY_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-4.png')
+ENEMY_WALK_RIGHT_B = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-3.png')
 
 

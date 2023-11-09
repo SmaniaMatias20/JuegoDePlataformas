@@ -1,6 +1,8 @@
 import pygame
 from pygame.locals import *
-from GUI_widget import *
+
+from Modules.Gui.GUI_widget import Widget
+
     
 class PictureBox(Widget):
     """

@@ -5,7 +5,7 @@ from Modules.Values.Assets import PLATFORM_IMAGE
 
 class Platform(Object):
 
-    def __init__(self, size, position=(0,0)) -> None:
+    def __init__(self, size, position=(0,0), speed = 0) -> None:
 
         # self.image = self.load_image(PLATFORM_IMAGE, size)
 
