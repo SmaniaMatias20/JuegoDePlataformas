@@ -37,6 +37,7 @@ class LevelOne(Level):
         self.draw_hitbox()
 
 
+
     def set_platforms(self):
         self.platforms = self.create_list_platforms() 
     
@@ -65,15 +66,21 @@ class LevelOne(Level):
 
         platform = Platform((800, 56), (0, 445))
         platform_b = Platform((800, 56), (0, 0))
-        platform_c = Platform((75,30), (100, 350))
-        platform_d = Platform((75,30), (300, 350))
-        platform_e = Platform((75,30), (500, 350))
+        platform_c = Platform((100,30), (100, 350))
+        platform_d = Platform((100,30), (300, 350))
+        platform_e = Platform((100,30), (500, 350))
+        platform_f = Platform((125, 30), (625, 150))
+        # platform_g = Platform((100,30), (400, 250))
+        # platform_h = Platform((100,30), (600, 250))
 
         list.append(platform)
         list.append(platform_b)
         list.append(platform_c)
         list.append(platform_d)
         list.append(platform_e)
+        list.append(platform_f)
+        # list.append(platform_g)
+        # list.append(platform_h)
         
         return list
     
@@ -81,14 +88,14 @@ class LevelOne(Level):
         list = []
 
         enemy = Enemy((50,50), (350, 395))
-        enemy_b = Enemy((50,50), (400, 395))
-        enemy_c = Enemy((50,50), (450, 395))
-        enemy_d = Enemy((50,50), (500, 395))
+        enemy_b = Enemy((50,50), (550, 300))
+        # enemy_c = Enemy((50,50), (350, 300))
+        # enemy_d = Enemy((50,50), (650, 200))
 
         list.append(enemy)
         list.append(enemy_b)
-        list.append(enemy_c)
-        list.append(enemy_d)
+        # list.append(enemy_c)
+        # list.append(enemy_d)
 
 
         return list

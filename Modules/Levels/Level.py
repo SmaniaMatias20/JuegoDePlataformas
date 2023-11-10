@@ -1,4 +1,5 @@
 import pygame as py
+# from Modules.Gui.GUI_form_prueba import *
 from Modules.Values.EColors import EColors
 from Modules.Values.Assets import *
 from Modules.Values.EColors import *
@@ -19,6 +20,7 @@ class Level:
         self.set_caption("Ragnarok")
         self.set_icon(GAME_ICON)
         self.DEBUG = False
+        # self.form_prueba = FormPrueba(self.screen, 200, 100, 300, 300, EColors.AGUA.value, EColors.AMARILLO.value, 3, True)
         # self.time = py.time.get_ticks()
 
 
@@ -31,6 +33,7 @@ class Level:
                         self.change_mode()
 
         self.fill_screen()
+
         
         
         

@@ -1,10 +1,11 @@
 
 from Modules.Gui.GUI_button_image import *
 from Modules.Gui.GUI_form import *
+from Modules.Values.EColors import *
 
 class FormContainerLevel(Form):
     def __init__(self, screen: pygame.Surface, nivel):
-        super().__init__(screen, 0, 0, screen.get_width(), screen.get_height())
+        super().__init__(screen, 0, 0, screen.get_width(), screen.get_height(), color_background = EColors.AMARILLO.value)
         nivel.screen = self._slave
         self.nivel = nivel
 
@@ -15,9 +16,9 @@ class FormContainerLevel(Form):
                         y = self._h - 100,
                         w = 50,
                         h = 50,
-                        onclick = self._btn_home_click,
+                        onclick = self.btn_home_click,
                         onclick_param = "",
-                        path_image = "") # Cargar el path de la imagen de home
+                        path_image = "Modules\Assets\Images\Menu\home.png") # Cargar el path de la imagen de home
         
         self.lista_widgets.append(self.nivel)
         self.lista_widgets.append(self._btn_home)
@@ -27,3 +28,6 @@ class FormContainerLevel(Form):
         for widget in self.lista_widgets:
             widget.update(events)
         self.draw()
+
+    def btn_home_click(self, param):
+        self.end_dialog()

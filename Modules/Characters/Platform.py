@@ -5,11 +5,14 @@ from Modules.Values.Assets import PLATFORM_IMAGE
 
 class Platform(Object):
 
-    def __init__(self, size, position=(0,0), speed = 0) -> None:
+    def __init__(self, size, position=(0,0), tipo = "") -> None:
 
         # self.image = self.load_image(PLATFORM_IMAGE, size)
+        if tipo == "":
+            super().__init__(size, position, PLATFORM_IMAGE)
+        else:
+            super().__init__(size, position, PLATFORM_IMAGE)   # Otra imagen de Plataforma
 
-        super().__init__(size, position, PLATFORM_IMAGE)
 
     # def blit(self, screen):
     #     # screen.blit(self.image, self.image.rect)
