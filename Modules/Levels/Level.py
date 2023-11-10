@@ -1,5 +1,5 @@
 import pygame as py
-# from Modules.Gui.GUI_form_prueba import *
+
 from Modules.Values.EColors import EColors
 from Modules.Values.Assets import *
 from Modules.Values.EColors import *
@@ -13,14 +13,13 @@ class Level:
         py.mixer.init()
 
         self.size = size
+        self.DEBUG = False
         self.screen = py.display.set_mode(self.size)
         self.running = True
         self.FPS = FPS
         self.clock = py.time.Clock()
         self.set_caption("Ragnarok")
         self.set_icon(GAME_ICON)
-        self.DEBUG = False
-        # self.form_prueba = FormPrueba(self.screen, 200, 100, 300, 300, EColors.AGUA.value, EColors.AMARILLO.value, 3, True)
         # self.time = py.time.get_ticks()
 
 
@@ -43,17 +42,17 @@ class Level:
     def show_score(self, text):
         # TODO: Hacer reutilizable
         font = py.font.SysFont('Arial', 30)
-        text = font.render(f"score: {text}", True, EColors.BLANCO.value)
+        text = font.render(f"score: {text}", True, EColors.WHITE.value)
         self.screen.blit(text, (0, 0))
 
     def draw_hitbox(self):
         if self.get_mode():
             for pl in self.platforms:
                 for key in pl.rect:
-                    py.draw.rect(self.screen, EColors.ROJO.value, pl.rect[key], 3)
+                    py.draw.rect(self.screen, EColors.RED.value, pl.rect[key], 3)
 
             for key in self.hero.rect:
-                    py.draw.rect(self.screen, EColors.VERDE.value, self.hero.rect[key], 3)
+                    py.draw.rect(self.screen, EColors.GREEN.value, self.hero.rect[key], 3)
             
     def set_caption(self, caption):
         py.display.set_caption(caption)

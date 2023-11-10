@@ -14,7 +14,7 @@ class EColors(Enum):
     ORANGE = (255, 165, 0)
     PINK = (255, 192, 203)
     VIOLET = (138, 43, 226)
-    LIME_GREEN = (50, 205, 50)
+    LIME_GREEN = (225, 244, 177)
     TURQUOISE = (64, 224, 208)
     BROWN = (165, 42, 42)
     GOLDENROD = (218, 165, 32)

@@ -5,7 +5,7 @@ from Modules.Values.EColors import *
 
 class FormContainerLevel(Form):
     def __init__(self, screen: pygame.Surface, nivel):
-        super().__init__(screen, 0, 0, screen.get_width(), screen.get_height(), color_background = EColors.AMARILLO.value)
+        super().__init__(screen, 0, 0, screen.get_width(), screen.get_height(), color_background = EColors.ALICE_BLUE.value)
         nivel.screen = self._slave
         self.nivel = nivel
 
@@ -18,7 +18,7 @@ class FormContainerLevel(Form):
                         h = 50,
                         onclick = self.btn_home_click,
                         onclick_param = "",
-                        path_image = "Modules\Assets\Images\Menu\home.png") # Cargar el path de la imagen de home
+                        path_image = "Modules\Assets\Images\Menu\home.png") 
         
         self.lista_widgets.append(self.nivel)
         self.lista_widgets.append(self._btn_home)
@@ -30,4 +30,5 @@ class FormContainerLevel(Form):
         self.draw()
 
     def btn_home_click(self, param):
+        del self.nivel
         self.end_dialog()

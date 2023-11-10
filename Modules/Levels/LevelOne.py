@@ -32,7 +32,7 @@ class LevelOne(Level):
         self.blit_enemys()
         self.get_pressed()
         self.hero.update(self.screen, self.pressed_keys, self.platforms)
-        # self.enemys[0].update(self.screen)
+
         self.show_score("0")
         self.draw_hitbox()
 
