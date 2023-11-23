@@ -4,8 +4,8 @@ from Modules.Values.Assets import *
 
 
 class Enemy(Object):
-    def __init__(self, size, position=(0,0), speed=5):
-
+    def __init__(self, size, position=(0,0), speed=3):
+        self.size = size
         self.animations = self.set_animations()
         self.state = "Left"
         self.current_animation = self.animations[self.state]
@@ -14,23 +14,42 @@ class Enemy(Object):
         self.set_speed(speed)
         super().__init__(size, position, self.current_animation[self.step_counter]) 
 
-    def update(self, screen):
-        # self.animation(screen)
-        pass
-
-
+    def update(self, screen, platforms):
+        self.move_enemy(screen, platforms)
+        self.animation(screen)
+    
+    def move_enemy(self, screen: py.Surface):
+        if self.state == "Left":
+            self.current_animation = self.animations[self.state]
+            self.rect_main.x -= self.speed
+            if self.rect_main.x < 0:
+                self.state = "Right"
+        elif self.state == "Right":
+            self.current_animation = self.animations[self.state]
+            self.rect_main.x += self.speed
+            if self.rect_main.x + 30 > screen.get_width():
+                self.state = "Left" 
 
     def set_animations(self):
         enemy_quiet = []
         enemy_walk_right = []
  
-        image_enemy_quiet = self.load_image(ENEMY_QUIET, (50, 50))
-        image_enemy_walk_right_a = self.load_image(ENEMY_WALK_RIGHT_A, (50, 50))
-        image_enemy_walk_right_b = self.load_image(ENEMY_WALK_RIGHT_B, (50, 50))
+        image_enemy_quiet = self.load_image(ENEMY_QUIET, self.size)
+        image_enemy_walk_right_a = self.load_image(ENEMY_WALK_RIGHT_A, self.size)
+        image_enemy_walk_right_b = self.load_image(ENEMY_WALK_RIGHT_B, self.size)
+        image_enemy_walk_right_c = self.load_image(ENEMY_WALK_RIGHT_C, self.size)
+        image_enemy_walk_right_d = self.load_image(ENEMY_WALK_RIGHT_D, self.size)
+        image_enemy_walk_right_e = self.load_image(ENEMY_WALK_RIGHT_E, self.size)
+        image_enemy_walk_right_f = self.load_image(ENEMY_WALK_RIGHT_F, self.size)
+
 
         enemy_quiet.append(image_enemy_quiet)
         enemy_walk_right.append(image_enemy_walk_right_a)
         enemy_walk_right.append(image_enemy_walk_right_b)
+        enemy_walk_right.append(image_enemy_walk_right_c)
+        enemy_walk_right.append(image_enemy_walk_right_d)
+        enemy_walk_right.append(image_enemy_walk_right_e)
+        enemy_walk_right.append(image_enemy_walk_right_f)
 
         animations = {}
         animations["Quiet"] = enemy_quiet
@@ -48,29 +67,7 @@ class Enemy(Object):
         screen.blit(self.current_animation[self.step_counter], self.rect_main)
         self.step_counter += 1
 
-    # def apply_gravity(self, screen, platforms: list["Platform"]):
-
-    #     if self.jump:
-    #         self.animation(screen)
-    #         self.rect_main.y += self.move_y
-    #         if self.move_y + self.gravity < self.jump_speed_limit:
-    #             self.move_y += self.gravity
-            
-    #     for pl in platforms:
-    #         if self.rect_main.colliderect(pl.rect_main):
-    #             self.move_y = 0
-    #             self.jump = False
-    #             self.rect_main.bottom = pl.rect_main.top
-    #             break
-    #         # elif self.rect.colliderect(pl.rect.bottom):
-    #         #     self.move_y = 0
-    #         #     self.jump = False
-    #         #     self.rect.bottom = pl.rect.top
-    #         #     break
-    #         else:
-    #             self.jump = True
-        
-    #     self.all_rects()
+    
             
 
         

@@ -5,18 +5,18 @@ from Modules.Values.Assets import *
 from Modules.Values.EColors import *
 from Modules.Characters.Hero import *
 
-FPS = 60
+# FPS = 60
 
 class Level:
     
-    def __init__(self, size, FPS, caption="Title", icon=""):
-        py.mixer.init()
+    def __init__(self, size):
+        # py.mixer.init()
 
         self.size = size
         self.DEBUG = False
         self.screen = py.display.set_mode(self.size)
         self.running = True
-        self.FPS = FPS
+        self.set_fps(20)
         self.clock = py.time.Clock()
         self.set_caption("Ragnarok")
         self.set_icon(GAME_ICON)
@@ -30,20 +30,9 @@ class Level:
                 elif event.type == py.KEYDOWN:
                     if event.key == py.K_TAB:
                         self.change_mode()
-
+        self.get_pressed()
         self.fill_screen()
-
         
-        
-        
-    def get_pressed(self):
-        self.pressed_keys = py.key.get_pressed()  
-    
-    def show_score(self, text):
-        # TODO: Hacer reutilizable
-        font = py.font.SysFont('Arial', 30)
-        text = font.render(f"score: {text}", True, EColors.WHITE.value)
-        self.screen.blit(text, (0, 0))
 
     def draw_hitbox(self):
         if self.get_mode():
@@ -53,7 +42,17 @@ class Level:
 
             for key in self.hero.rect:
                     py.draw.rect(self.screen, EColors.GREEN.value, self.hero.rect[key], 3)
-            
+        
+
+
+    def get_pressed(self):
+        self.pressed_keys = py.key.get_pressed()  
+    
+    def show_score(self, text):
+        font = py.font.SysFont('Arial', 30)
+        text = font.render(f"score: {text}", True, EColors.WHITE.value)
+        self.screen.blit(text, (0, 0))
+  
     def set_caption(self, caption):
         py.display.set_caption(caption)
 

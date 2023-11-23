@@ -22,15 +22,25 @@ PLATFORM_IMAGE = os.path.join('Modules','Assets', 'Images', 'Atmosphere', 'platf
 BACKGROUND_IMAGE = os.path.join('Modules','Assets', 'Images', 'Atmosphere', 'background.jpg')
 
 
-# HERO IMAGE
+# HERO
 HERO_QUIET = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero.png')
 HERO_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-1.png')
 HERO_WALK_RIGHT_B = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-2.png')
-HERO_JUMP = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-3.png')
+HERO_WALK_RIGHT_C = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-3.png') 
+HERO_WALK_RIGHT_D = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-4.png') 
+HERO_WALK_RIGHT_E = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-5.png') 
+HERO_JUMP = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-6.png')
+PROJECTILE = os.path.join('Modules','Assets', 'Images', 'Hero', 'projectile.png')
+COIN = os.path.join('Modules','Assets', 'Images', 'Item', 'coin.png')
 
 # ENEMY IMAGE
 ENEMY_QUIET = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy.png')
-ENEMY_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-4.png')
-ENEMY_WALK_RIGHT_B = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-3.png')
+ENEMY_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-1.png')
+ENEMY_WALK_RIGHT_B = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-2.png')
+ENEMY_WALK_RIGHT_C = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-3.png')
+ENEMY_WALK_RIGHT_D = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-4.png')
+ENEMY_WALK_RIGHT_E = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-5.png')
+ENEMY_WALK_RIGHT_F = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-6.png')
+
 
 

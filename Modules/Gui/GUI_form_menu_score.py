@@ -4,6 +4,7 @@ from pygame.locals import *
 from Modules.Gui.GUI_button_image import *
 from Modules.Gui.GUI_form import *
 from Modules.Gui.GUI_label import *
+from Modules.Values.EColors import EColors
 
         
 class FormMenuScore(Form):
@@ -18,16 +19,16 @@ class FormMenuScore(Form):
         self._margen_y = margen_y
         #Creo 2 labels y los agrego a la lista de widgets
         self.lista_widgets.append(
-            Label(screen=self._slave, x=margen_x+10,y=20,w=w/2-margen_x-10,h=50,text = "Jugador", font="Verdana",font_size=30,font_color=(255,255,255),path_image="Modules\Assets\Images\Menu\\bar.png"))
+            Label(screen=self._slave, x=margen_x+10,y=20,w=w/2-margen_x-10,h=50,text = "Players", font="Verdana",font_size=30,font_color=EColors.BLACK.value,path_image="Modules\Assets\Images\Menu\\table.png"))
         self.lista_widgets.append(
             Label(screen=self._slave,
                  x=margen_x+10+w/2-margen_x-10,
                  y=20,w=w/2-margen_x-10,
-                 h=50,text = "Puntaje",
+                 h=50,text = "Score",
                 font="Verdana",
                 font_size=30,
-                font_color=(255,255,255),
-                path_image="Modules\Assets\Images\Menu\\bar.png"))
+                font_color= EColors.BLACK.value,
+                path_image="Modules\Assets\Images\Menu\\table.png"))
         
         pos_inicial_y = margen_y
         
@@ -41,7 +42,7 @@ class FormMenuScore(Form):
                 cadena = f"{s}"
                 pos = Label(screen=self._slave, x=pos_inicial_x,y=pos_inicial_y,
                             w=w/2-margen_x,h=100,text = cadena, font="Verdana",font_size=30,
-                            font_color=(255,255,255),path_image="Modules\Assets\Images\Menu\Table.png")
+                            font_color=EColors.BLACK.value, path_image="Modules\Assets\Images\Menu\\table.png")
                 self.lista_widgets.append(pos)
                 pos_inicial_x += w/2-margen_x
                 
@@ -50,14 +51,13 @@ class FormMenuScore(Form):
         
         
         #Crear boton home
-
         self._btn_home = Button_Image(screen = self._slave, 
         master_x = x, 
         master_y = y, 
-        x = w-70, 
-        y = h-70, 
-        w = 50, 
-        h = 50, 
+        x = w-50, 
+        y = h-50, 
+        w = 30, 
+        h = 30, 
         path_image = "Modules\Assets\Images\Menu\home.png", 
         onclick = self.btn_home_click, 
         onclick_param = "")

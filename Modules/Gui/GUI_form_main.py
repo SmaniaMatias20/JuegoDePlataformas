@@ -39,48 +39,48 @@ class FormMain(Form):
 
         super().__init__(screen, x,y,w,h,color_background, color_border, border_size, active)
 
-        self.btn_play_music = Button_Image(self._slave, 
-                                        x, 
-                                        y, 
-                                        625, 
-                                        75, 
-                                        50, 
-                                        50,
-                                        "Modules\Assets\Images\Menu\sound_on.png",
-                                        self.btn_play_click, 
-                                        "")
+        # self.btn_play_music = Button_Image(self._slave, 
+        #                                 x, 
+        #                                 y, 
+        #                                 625, 
+        #                                 75, 
+        #                                 50, 
+        #                                 50,
+        #                                 "Modules\Assets\Images\Menu\sound_on.png",
+        #                                 self.btn_play_click, 
+        #                                 "")
 
-        self.slider_volumen = Slider(self._slave, 
-                                            x, 
-                                            y, 
-                                            400, 
-                                            30, 
-                                            200, 
-                                            15, 
-                                            self.volumen, 
-                                            EColors.BLACK.value, 
-                                            EColors.WHITE.value)
+        # self.slider_volumen = Slider(self._slave, 
+        #                                     x, 
+        #                                     y, 
+        #                                     400, 
+        #                                     30, 
+        #                                     200, 
+        #                                     15, 
+        #                                     self.volumen, 
+        #                                     EColors.BLACK.value, 
+        #                                     EColors.WHITE.value)
         
-        porcentaje_volumen = f"{self.volumen * 100}%"
-        self.label_volumen = Label(self._slave, 
-                                            625, 
-                                            10, 
-                                            50, 
-                                            50, 
-                                            porcentaje_volumen, 
-                                            "Comic Sans MS", 
-                                            20, 
-                                            EColors.WHITE.value,
-                                            "Modules\Assets\Images\Menu\porcentaje.png")
+        # porcentaje_volumen = f"{self.volumen * 100}%"
+        # self.label_volumen = Label(self._slave, 
+        #                                     625, 
+        #                                     10, 
+        #                                     50, 
+        #                                     50, 
+        #                                     porcentaje_volumen, 
+        #                                     "Comic Sans MS", 
+        #                                     20, 
+        #                                     EColors.WHITE.value,
+        #                                     "Modules\Assets\Images\Menu\porcentaje.png")
 
         # Boton para acceder a las puntuaciones
         self.btn_tabla = Button_Image(self._slave, 
                                             x, 
                                             y, 
-                                            225, 
                                             150, 
-                                            100, 
-                                            100, 
+                                            210, 
+                                            200, 
+                                            50, 
                                             "Modules\Assets\Images\Menu\star.png", 
                                             self.btn_tabla_click, 
                                             "")
@@ -89,10 +89,10 @@ class FormMain(Form):
         self.btn_levels = Button_Image(self._slave, 
                                             x, 
                                             y, 
-                                            350, 
                                             150, 
-                                            100, 
-                                            100, 
+                                            150, 
+                                            200, 
+                                            50, 
                                             "Modules\Assets\Images\Menu\levels.png", 
                                             self.btn_levels_click, 
                                             "",
@@ -104,21 +104,34 @@ class FormMain(Form):
         self.btn_end = Button_Image(self._slave, 
                                             x, 
                                             y, 
-                                            625, 
-                                            325, 
-                                            50, 
-                                            50, 
+                                            150, 
+                                            270, 
+                                            200, 
+                                            40, 
                                             "Modules\Assets\Images\Menu\exit.png", 
+                                            self.btn_end_click, 
+                                            "hola")
+        
+        # Boton para configuracion
+        self.btn_config = Button_Image(self._slave, 
+                                            x, 
+                                            y, 
+                                            425, 
+                                            20, 
+                                            50, 
+                                            50, 
+                                            "Modules\Assets\Images\Menu\config.png", 
                                             self.btn_end_click, 
                                             "hola")
 
         # self.lista_widgets.append(self.txt_name)
-        self.lista_widgets.append(self.btn_play_music)
-        self.lista_widgets.append(self.slider_volumen)
-        self.lista_widgets.append(self.label_volumen)
+        # self.lista_widgets.append(self.btn_play_music)
+        # self.lista_widgets.append(self.slider_volumen)
+        # self.lista_widgets.append(self.label_volumen)
         self.lista_widgets.append(self.btn_tabla)
         self.lista_widgets.append(self.btn_levels)
         self.lista_widgets.append(self.btn_end)
+        self.lista_widgets.append(self.btn_config)
     
     def render(self):
         self._slave.fill(self._color_background)
@@ -130,16 +143,16 @@ class FormMain(Form):
                 self.render()
                 for widget in self.lista_widgets:
                     widget.update(lista_eventos)
-                self.update_volumen(lista_eventos)   
+                # self.update_volumen(lista_eventos)   
         else:
             self.hijo.update(lista_eventos)
 
 
-    def update_volumen(self, lista_eventos):
-        self.volumen = self.slider_volumen.value
-        self.label_volumen.update(lista_eventos)
-        self.label_volumen.set_text(f"{round(self.volumen * 100)}%")
-        pygame.mixer.music.set_volume(self.volumen)
+    # def update_volumen(self, lista_eventos):
+    #     self.volumen = self.slider_volumen.value
+    #     self.label_volumen.update(lista_eventos)
+    #     self.label_volumen.set_text(f"{round(self.volumen * 100)}%")
+    #     pygame.mixer.music.set_volume(self.volumen)
         
     # Acciones de los botones
     def btn_play_click(self, param):
@@ -161,10 +174,10 @@ class FormMain(Form):
         y = 50, 
         w = 400, 
         h = 425, 
-        color_background = EColors.DARK_ORANGE.value, 
-        color_border = EColors.DARK_ORANGE.value, 
+        color_background = EColors.WHITE.value, 
+        color_border = EColors.WHITE.value, 
         active = True, 
-        path_image = "Modules\Assets\Images\Menu\Window.png", 
+        path_image = "Modules\Assets\Images\Menu\window.png", 
         scoreboard = diccionario, 
         margen_x = 10, 
         margen_y = 100, 
@@ -180,8 +193,8 @@ class FormMain(Form):
         y= 25, 
         w= 400, 
         h= 400, 
-        color_background = EColors.DARK_ORANGE.value, 
-        color_border = EColors.DARK_ORANGE.value, 
+        color_background = EColors.GREEN.value, 
+        color_border = EColors.GREEN.value, 
         active = True, 
         path_image = "Modules\Assets\Images\Menu\window.png")
 

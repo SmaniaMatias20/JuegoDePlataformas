@@ -4,7 +4,7 @@ from Modules.Values.EOrientation import EOrientation
 
 class Object:
 
-    def __init__(self, size_surface, position, image=None) -> None:
+    def __init__(self, size_surface, position, image = None) -> None:
 
         # Reemplazar por un try-except
         if type(image) == py.surface.Surface:
@@ -22,26 +22,6 @@ class Object:
         self.rect_main.x = position[0]
         self.rect_main.y = position[1]
         self.rect = self.get_rectangles(self.rect_main)
-
-        # self.rect_top = py.Rect(self.rect_main.left, self.rect_main.top, self.rect_main.width, 10)
-        # self.rect_bottom = py.Rect(self.rect_main.left, self.rect_main.bottom - 10, self.rect_main.width, 10)
-        # self.rect_left = py.Rect(self.rect_main.left - 10, self.rect_main.top, 10, self.rect_main.height)
-
-        
-        # self.rect = {
-        # "rect_main": self.rect_main, 
-        # "rect_bottom": self.rect_bottom, 
-        # "rect_top": self.rect_top,
-        # "rect_left": self.rect_left
-        # # "rect_right": self.rect_main.right
-        # }
-        
-        
-        # self.rect_top.x = position[0]
-        # self.rect_top.y = position[1]
-        # self.rect_bottom.x = position[0]
-        # self.rect_bottom.y = position[1]
-
 
         self.direction = EOrientation.IDLE
     

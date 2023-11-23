@@ -3,26 +3,30 @@ import sys
 from pygame.locals import *
 from Modules.Gui.GUI_form_main import FormMain
 from Modules.Levels.Level import Level
+from Modules.Levels.LevelOne import LevelOne
 from Modules.Values.EColors import *
 
 pygame.init()
-
-level = Level((800, 500), 30) # Al juego le llega otro size, corregir
-form_main = FormMain(level.screen, 50, 50, 700, 400, EColors.LIME_GREEN.value, EColors.WHITE.value, 3, True)
-
+WIDTH = 800
+HEIGHT = 500
+screen = pygame.display.set_mode((WIDTH,HEIGHT))
+clock = pygame.time.Clock()
+FPS = 20
+form_main = FormMain(screen, 150, 50, 500, 400, EColors.BLACK.value, EColors.WHITE.value, 5, True)
+# level = LevelOne((WIDTH,HEIGHT))
 
 while True:
-    level.clock.tick(level.FPS)
+    clock.tick(FPS)
     events = pygame.event.get()
     for event in events:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-
+    # level.update(events)
     if form_main.exit:
         break
 
-    level.screen.fill("Black")
+    screen.fill("Black")
     form_main.update(events)
     
     pygame.display.flip()

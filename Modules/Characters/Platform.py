@@ -1,6 +1,6 @@
-import pygame as py
 from Modules.Characters.Object import Object
-from Modules.Values.Assets import PLATFORM_IMAGE
+from Modules.Values.Assets import *
+import pygame as py
 
 
 class Platform(Object):
