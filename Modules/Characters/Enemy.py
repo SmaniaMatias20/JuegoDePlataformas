@@ -1,3 +1,4 @@
+from Modules.Characters.Platform import *
 from Modules.Characters.Object import Object
 from Modules.Characters.Platform import Platform
 from Modules.Values.Assets import *
@@ -14,20 +15,20 @@ class Enemy(Object):
         self.set_speed(speed)
         super().__init__(size, position, self.current_animation[self.step_counter]) 
 
-    def update(self, screen, platforms):
-        self.move_enemy(screen, platforms)
+    def update(self, screen):
+        self.move_enemy(screen)
         self.animation(screen)
     
     def move_enemy(self, screen: py.Surface):
         if self.state == "Left":
             self.current_animation = self.animations[self.state]
             self.rect_main.x -= self.speed
-            if self.rect_main.x < 0:
+            if self.rect_main.x < 150:
                 self.state = "Right"
         elif self.state == "Right":
             self.current_animation = self.animations[self.state]
             self.rect_main.x += self.speed
-            if self.rect_main.x + 30 > screen.get_width():
+            if self.rect_main.x + 30 > screen.get_width() - 200:
                 self.state = "Left" 
 
     def set_animations(self):

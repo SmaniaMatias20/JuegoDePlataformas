@@ -10,9 +10,9 @@ class Projectile(Object):
         if direction == "Left":
             self.current_animation = py.transform.flip(self.current_animation,True,False)
             
-        super().__init__(size, position, self.current_animation) # Imagen de la flecha
+        super().__init__(size, position, self.current_animation) 
         self.direction = direction
-        self.speed = 10
+        self.set_speed(7)
             
     
     def update(self):

@@ -10,7 +10,7 @@ from Modules.Characters.Hero import *
 class Level:
     
     def __init__(self, size):
-        # py.mixer.init()
+
 
         self.size = size
         self.DEBUG = False
@@ -25,11 +25,9 @@ class Level:
 
     def update(self, list_events):
         for event in list_events:
-                if event.type == py.QUIT:
-                    self.running = False
-                elif event.type == py.KEYDOWN:
-                    if event.key == py.K_TAB:
-                        self.change_mode()
+            if event.type == py.KEYDOWN:
+                if event.key == py.K_TAB:
+                    self.change_mode()
         self.get_pressed()
         self.fill_screen()
         
@@ -43,15 +41,13 @@ class Level:
             for key in self.hero.rect:
                     py.draw.rect(self.screen, EColors.GREEN.value, self.hero.rect[key], 3)
         
-
-
     def get_pressed(self):
         self.pressed_keys = py.key.get_pressed()  
     
     def show_score(self, text):
-        font = py.font.SysFont('Arial', 30)
+        font = py.font.SysFont('Arial Black', 20)
         text = font.render(f"score: {text}", True, EColors.WHITE.value)
-        self.screen.blit(text, (0, 0))
+        self.screen.blit(text, (5, 0))
   
     def set_caption(self, caption):
         py.display.set_caption(caption)

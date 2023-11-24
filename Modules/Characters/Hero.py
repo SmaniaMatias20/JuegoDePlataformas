@@ -1,4 +1,5 @@
 import pygame as py
+from Modules.Characters.Enemy import Enemy
 from Modules.Characters.Item import Item
 from Modules.Characters.Object import *
 from Modules.Characters.Projectile import Projectile
@@ -20,6 +21,7 @@ class Hero(Object):
         self.gravity = 1
         self.jump = False
         self.points = 0
+        self.lives = 3
         #########################
         self.flag_shot = False
         self.time_last_shot = 0
@@ -28,12 +30,13 @@ class Hero(Object):
         self.set_speed(speed)
         super().__init__(size, position, self.current_animation[self.step_counter]) 
 
-    def update(self, screen, pressed_keys, platforms, items):
+    def update(self, screen, pressed_keys, platforms, items, enemys):
+        self.show_lives(screen)
         self.move_hero(screen, pressed_keys)
         self.update_projectile(screen)
         self.apply_gravity(screen, platforms)
         self.collide_with_items(items)
-        # self.collide_with_platforms(platforms)
+        self.collide_with_enemys(enemys)
         
     
     def move_hero(self, screen: py.Surface, pressed_keys):
@@ -69,11 +72,27 @@ class Hero(Object):
                 self.time_last_shot = time
         ############################################        
 
+    def show_lives(self, screen):
+        one_live = self.load_image(ONE_LIVE, (75, 30))
+        two_live = self.load_image(TWO_LIVE, (75, 30))
+        three_live = self.load_image(THREE_LIVE, (75, 30))
+
+        if self.lives == 3:
+            screen.blit(three_live, [10, 30])
+        elif self.lives == 2:
+            screen.blit(two_live, [10, 30])
+        else:
+            screen.blit(one_live, [10, 30])
+
+
+
+
+
     def shot_proyectile(self):
         x = None
         margin = 47
         y = self.rect_main.centery - 10
-        if self.state == "Right" or self.state == "Quiet":
+        if self.state == "Right":
             x = self.rect_main.right - margin
         elif self.state == "Left":
             x = self.rect_main.left - 100 + margin
@@ -194,19 +213,38 @@ class Hero(Object):
         indice = 0
         while indice < len(items):
             if self.rect_main.colliderect(items[indice].rect_main):
-                self.points += 1
-                items.pop(indice)
-                indice -= 1
+                if items[indice].type == "Coin":
+                    self.points += 10
+                    items.pop(indice)
+                    indice -= 1
+                else:
+                    self.points += 50
+                    items.pop(indice)
+                    indice -= 1
+                    print("Fin del Nivel") # Retornar algo para finalizar el nivel
             indice +=1
     
-    # def collide_with_platforms(self, platforms:list['Platform']):
-    #     indice = 0
-    #     while indice < len(platforms):
-    #         if self.rect_main.colliderect(platforms[indice].rect_main):
-    #             print("hola")
-    #             indice +=1  
-    #         indice +=1
-                     
+    def collide_with_enemys(self, enemys:list['Enemy']):
+        indice = 0
+        while indice < len(enemys):
+            if self.rect_main.colliderect(enemys[indice].rect_main):
+                self.lives -= 1
+                self.rect_main.x = 0
+                self.rect_main.y = 400
+                break
+            indice +=1
+        
+        self.kill_enemy(enemys)
+    
+    def kill_enemy(self, enemys:list['Enemy']):
+        for projectile in self.list_projectile:
+            for enemy in enemys:
+                if projectile.rect_main.colliderect(enemy.rect_main):
+                    self.list_projectile.remove(projectile)
+                    self.points += 50
+                    enemys.remove(enemy)
+                    del enemy
+                    
     # def collide_fo_effects(self):
         # TODO: Refactorizar
         #  FIXME: Refactorizar

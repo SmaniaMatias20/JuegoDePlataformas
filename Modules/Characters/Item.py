@@ -4,10 +4,11 @@ from Modules.Values.Assets import *
 
 class Item(Object):
 
-    def __init__(self, size, position=(0,0), tipo = "Coin") -> None:
+    def __init__(self, size, position=(0,0), type = "Coin") -> None:
 
-        # self.image = self.load_image(PLATFORM_IMAGE, size)
-        if tipo == "Coin":
+        self.type = type
+
+        if self.type == "Coin":
             super().__init__(size, position, COIN)
-        else:
-            super().__init__(size, position, COIN)   # Otra imagen 
+        elif self.type == "Crown":
+            super().__init__(size, position, CROWN)   # Otra imagen 

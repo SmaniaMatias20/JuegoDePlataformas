@@ -2,7 +2,6 @@ import pygame
 import sys
 from pygame.locals import *
 from Modules.Gui.GUI_form_main import FormMain
-from Modules.Levels.Level import Level
 from Modules.Levels.LevelOne import LevelOne
 from Modules.Values.EColors import *
 

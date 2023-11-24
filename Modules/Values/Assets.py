@@ -32,6 +32,10 @@ HERO_WALK_RIGHT_E = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-5.p
 HERO_JUMP = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-6.png')
 PROJECTILE = os.path.join('Modules','Assets', 'Images', 'Hero', 'projectile.png')
 COIN = os.path.join('Modules','Assets', 'Images', 'Item', 'coin.png')
+CROWN = os.path.join('Modules','Assets', 'Images', 'Item', 'crown.png')
+ONE_LIVE = os.path.join('Modules','Assets', 'Images', 'Hero', '1-3.png')
+TWO_LIVE = os.path.join('Modules','Assets', 'Images', 'Hero', '2-3.png')
+THREE_LIVE = os.path.join('Modules','Assets', 'Images', 'Hero', '3-3.png')
 
 # ENEMY IMAGE
 ENEMY_QUIET = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy.png')

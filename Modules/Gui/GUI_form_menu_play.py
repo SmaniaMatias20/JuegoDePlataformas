@@ -96,7 +96,6 @@ class FormMenuPlay(Form):
             self.hijo.update(events)
 
     def entrar_nivel(self, nombre_nivel):
-        print("Entro")
         nivel = self.manejador_niveles.get_level(nombre_nivel)
         frm_contenedor_nivel = FormContainerLevel(self._master, nivel)
         self.show_dialog(frm_contenedor_nivel)

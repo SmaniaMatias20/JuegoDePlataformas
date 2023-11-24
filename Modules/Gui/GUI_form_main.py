@@ -1,22 +1,25 @@
-import pygame
-from pygame.locals import *
-from Modules.Gui.GUI_button import *
 from Modules.Gui.GUI_form_container_level import *
+from Modules.Gui.GUI_form_menu_options import *
+from Modules.Gui.GUI_form_menu_score import *
 from Modules.Gui.GUI_form_menu_play import *
-from Modules.Gui.GUI_slider import *
+from Modules.Gui.GUI_button_image import *
 from Modules.Gui.GUI_textbox import *
+from Modules.Gui.GUI_button import *
+from Modules.Gui.GUI_slider import *
+from Modules.Values.EColors import *
 from Modules.Gui.GUI_label import *
 from Modules.Gui.GUI_form import *
-from Modules.Gui.GUI_button_image import *
-from Modules.Gui.GUI_form_menu_score import *
-from Modules.Levels.Level import Level
-from Modules.Values.EColors import *
+from pygame.locals import *
+import pygame
 
 
     
 class FormMain(Form):
     def __init__(self,screen,x,y,w,h,color_background, color_border = "Black", border_size = -1, active = True):
 
+        super().__init__(screen, x,y,w,h,color_background, color_border, border_size, active)
+        self.flag_play = True
+        self.exit = False
         
         ########################################################
         # WIDTH = 800
@@ -27,17 +30,14 @@ class FormMain(Form):
         ########################################################
 
 
-        self.flag_play = True
-        self.exit = False
         # Musica de fondo
-        self.volumen = 0.2
-        pygame.mixer.init()
-        pygame.mixer.music.load("Modules\Assets\Music\Vengeance (Loopable).wav")
-        pygame.mixer.music.set_volume(self.volumen)
-        pygame.mixer.music.play(-1)
+        # self.volumen = 0.2
+        # pygame.mixer.init()
+        # pygame.mixer.music.load("Modules\Assets\Music\Vengeance (Loopable).wav")
+        # pygame.mixer.music.set_volume(self.volumen)
+        # pygame.mixer.music.play(-1)
         ########################################################################
 
-        super().__init__(screen, x,y,w,h,color_background, color_border, border_size, active)
 
         # self.btn_play_music = Button_Image(self._slave, 
         #                                 x, 
@@ -74,15 +74,15 @@ class FormMain(Form):
         #                                     "Modules\Assets\Images\Menu\porcentaje.png")
 
         # Boton para acceder a las puntuaciones
-        self.btn_tabla = Button_Image(self._slave, 
+        self.btn_scores = Button_Image(self._slave, 
                                             x, 
                                             y, 
                                             150, 
-                                            210, 
+                                            185, 
                                             200, 
-                                            50, 
+                                            80, 
                                             "Modules\Assets\Images\Menu\star.png", 
-                                            self.btn_tabla_click, 
+                                            self.btn_scores_click, 
                                             "")
         
         # Boton para acceder al contenedor de niveles
@@ -90,9 +90,9 @@ class FormMain(Form):
                                             x, 
                                             y, 
                                             150, 
-                                            150, 
+                                            75, 
                                             200, 
-                                            50, 
+                                            80, 
                                             "Modules\Assets\Images\Menu\levels.png", 
                                             self.btn_levels_click, 
                                             "",
@@ -101,15 +101,15 @@ class FormMain(Form):
 
 
         # Boton para salir del juego
-        self.btn_end = Button_Image(self._slave, 
+        self.btn_quit = Button_Image(self._slave, 
                                             x, 
                                             y, 
                                             150, 
-                                            270, 
+                                            300, 
                                             200, 
-                                            40, 
+                                            80, 
                                             "Modules\Assets\Images\Menu\exit.png", 
-                                            self.btn_end_click, 
+                                            self.btn_quit_click, 
                                             "hola")
         
         # Boton para configuracion
@@ -121,16 +121,16 @@ class FormMain(Form):
                                             50, 
                                             50, 
                                             "Modules\Assets\Images\Menu\config.png", 
-                                            self.btn_end_click, 
+                                            self.btn_config_click, 
                                             "hola")
 
         # self.lista_widgets.append(self.txt_name)
         # self.lista_widgets.append(self.btn_play_music)
         # self.lista_widgets.append(self.slider_volumen)
         # self.lista_widgets.append(self.label_volumen)
-        self.lista_widgets.append(self.btn_tabla)
+        self.lista_widgets.append(self.btn_scores)
         self.lista_widgets.append(self.btn_levels)
-        self.lista_widgets.append(self.btn_end)
+        self.lista_widgets.append(self.btn_quit)
         self.lista_widgets.append(self.btn_config)
     
     def render(self):
@@ -163,7 +163,7 @@ class FormMain(Form):
 
         self.flag_play = not self.flag_play
 
-    def btn_tabla_click(self, param):
+    def btn_scores_click(self, param):
         # Sacar la informacion de un archivo.
         diccionario = [{"Jugador": "Mario", "Score": 250},
                       {"Jugador": "Gio", "Score": 150},
@@ -171,9 +171,9 @@ class FormMain(Form):
         
         nuevo_form = FormMenuScore(screen = self._master, 
         x = 200, 
-        y = 50, 
-        w = 400, 
-        h = 425, 
+        y = 40, 
+        w = 425, 
+        h = 450, 
         color_background = EColors.WHITE.value, 
         color_border = EColors.WHITE.value, 
         active = True, 
@@ -187,18 +187,30 @@ class FormMain(Form):
         self.show_dialog(nuevo_form)
     
     def btn_levels_click(self, param):
-
         menu_play = FormMenuPlay(self._master, 
         x= 200, 
         y= 25, 
         w= 400, 
         h= 400, 
-        color_background = EColors.GREEN.value, 
-        color_border = EColors.GREEN.value, 
+        color_background = EColors.WHITE.value, 
+        color_border = EColors.WHITE.value, 
         active = True, 
         path_image = "Modules\Assets\Images\Menu\window.png")
 
         self.show_dialog(menu_play)
 
-    def btn_end_click(self, param):
+    def btn_config_click(self, param):
+        menu_options = FormMenuOptions(self._master, 
+        x= 200, 
+        y= 25, 
+        w= 400, 
+        h= 400, 
+        color_background = EColors.WHITE.value, 
+        color_border = EColors.WHITE.value, 
+        active = True, 
+        path_image = "Modules\Assets\Images\Menu\window.png")
+
+        self.show_dialog(menu_options)
+
+    def btn_quit_click(self, param):
         self.exit = True

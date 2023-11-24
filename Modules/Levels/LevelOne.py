@@ -11,7 +11,6 @@ from Modules.Levels.LevelOne import *
 
 
 class LevelOne(Level):
-
     def __init__(self, size):
         super().__init__(size)
         self.set_background_image(BACKGROUND_IMAGE)
@@ -20,20 +19,15 @@ class LevelOne(Level):
         self.set_items()
         self.set_hero()
         self.pressed_keys = []
-        # self.set_music(MARIO_MUSIC)
-        
-
 
     def update(self, list_events):
         super().update(list_events)
-        
-        
         self.blit_platforms()
         self.blit_items()
         for enemy in self.enemys:
             enemy.update(self.screen)
 
-        self.hero.update(self.screen, self.pressed_keys, self.platforms, self.items)
+        self.hero.update(self.screen, self.pressed_keys, self.platforms, self.items, self.enemys)
         self.show_score(f"{self.hero.points}")
         self.draw_hitbox()
 
@@ -58,11 +52,6 @@ class LevelOne(Level):
     def blit_platforms(self):
         for platform in self.platforms:
             platform.blit(self.screen)
-
-    # def blit_enemys(self):
-    #     for enemy in self.enemys:
-    #         enemy.blit(self.screen)
-    #         enemy.update(self.screen)
     
     def blit_items(self):
         for item in self.items:
@@ -75,45 +64,44 @@ class LevelOne(Level):
         platform_b = Platform((800, 56), (0, 0))
         platform_c = Platform((700, 50), (0, 325))
         platform_d = Platform((700, 50), (100, 200))
-        
-
-        # platform_g = Platform((100,30), (400, 250))
-        # platform_h = Platform((100,30), (600, 250))
 
         list.append(platform)
         list.append(platform_b)
         list.append(platform_c)
         list.append(platform_d)
   
-        # list.append(platform_g)
-        # list.append(platform_h)
         
         return list
     
     def create_list_enemys(self):
         list = []
 
-        enemy = Enemy((40, 50), (350, 395), 3)
-        enemy_b = Enemy((40, 50), (550, 300), 3)
-        # enemy_c = Enemy((50,50), (350, 300))
-        # enemy_d = Enemy((50,50), (650, 200))
-
+        enemy = Enemy((40, 50), (350, 397), 2)
+        enemy_b = Enemy((40, 50), (550, 277), 2)
+        enemy_c = Enemy((40, 50), (350, 150), 2)
+    
         list.append(enemy)
         list.append(enemy_b)
-        # list.append(enemy_c)
-        # list.append(enemy_d)
-
+        list.append(enemy_c)
 
         return list
 
     def create_list_items(self):
         list = []
+        x = 0 
+        
+        for i in range(20):
+            coin = Item((20, 20), (x, 400), "Coin")
+            coin_b = Item((20, 20),(x, 285), "Coin")
+            coin_c = Item((20, 20),(x + 100, 150), "Coin")
+            x += 30
+            list.append(coin)
+            list.append(coin_b)
+            list.append(coin_c)
+        
+        crown = Item((50, 50), (725, 125), "Crown")
+        list.append(crown)
 
-        coin = Item((20, 20), (250, 250), "Coin")
-        coin_b = Item((20, 20), (300, 300), "Coin")
-
-        list.append(coin)
-        list.append(coin_b)
 
         return list
 
