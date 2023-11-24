@@ -19,7 +19,7 @@ def flip_images(images: list):
 # MARIO_COIN_SOUND = os.path.join('assets', 'music', 'mario-coin.mp3')
 GAME_ICON = os.path.join('Modules','Assets', 'Images', 'icon.png') 
 PLATFORM_IMAGE = os.path.join('Modules','Assets', 'Images', 'Atmosphere', 'platform.png') 
-BACKGROUND_IMAGE = os.path.join('Modules','Assets', 'Images', 'Atmosphere', 'background.jpg')
+BACKGROUND_IMAGE = os.path.join('Modules','Assets', 'Images', 'Atmosphere', 'background.png')
 
 
 # HERO

@@ -13,9 +13,9 @@ class Level:
 
 
         self.size = size
-        self.DEBUG = False
         self.screen = py.display.set_mode(self.size)
         self.running = True
+        self.DEBUG = False
         self.set_fps(20)
         self.clock = py.time.Clock()
         self.set_caption("Ragnarok")
@@ -34,6 +34,7 @@ class Level:
 
     def draw_hitbox(self):
         if self.get_mode():
+
             for pl in self.platforms:
                 for key in pl.rect:
                     py.draw.rect(self.screen, EColors.RED.value, pl.rect[key], 3)

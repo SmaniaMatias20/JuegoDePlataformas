@@ -62,15 +62,15 @@ class Hero(Object):
                     self.move_y = self.jump_power
                     self.current_animation = self.animations[self.state]
                     self.animation(screen)
-                    self.move_up(0) # El tope debe ser el bottom de las plataformas
-        #############################################
+                    self.move_up(0)
+
         if self.flag_shot and pressed_keys[py.K_f]:
             time = py.time.get_ticks()
             if time - self.time_last_shot >= 1000:
-                self.shot_proyectile() 
+                self.shot_projectile() 
                 self.flag_shot = False
                 self.time_last_shot = time
-        ############################################        
+     
 
     def show_lives(self, screen):
         one_live = self.load_image(ONE_LIVE, (75, 30))
@@ -84,11 +84,7 @@ class Hero(Object):
         else:
             screen.blit(one_live, [10, 30])
 
-
-
-
-
-    def shot_proyectile(self):
+    def shot_projectile(self):
         x = None
         margin = 47
         y = self.rect_main.centery - 10

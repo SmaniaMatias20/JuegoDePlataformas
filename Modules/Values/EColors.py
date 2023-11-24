@@ -38,7 +38,7 @@ class EColors(Enum):
     SIENNA = (160, 82, 45)
     CHOCOLATE = (210, 105, 30)
     PERU = (205, 133, 63)
-    GOLDEN = (255, 223, 0)
+    GOLDEN = (197, 143, 22)
     KHAKI = (240, 230, 140)
     DARK_OLIVE_GREEN = (85, 107, 47)
     OLIVE_DRAB = (107, 142, 35)

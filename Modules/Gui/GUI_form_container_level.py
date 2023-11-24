@@ -24,11 +24,17 @@ class FormContainerLevel(Form):
         self.lista_widgets.append(self._btn_home)
 
     def update(self, events):
-        self.nivel.update(events)
+        # if no esta en pausa
         for widget in self.lista_widgets:
             widget.update(events)
         self.draw()
 
+
+
     def btn_home_click(self, param):
         del self.nivel
         self.end_dialog()
+    
+    # def btn_pause_click(self, param):
+    #   self.paus = not self.pause
+    # Menu de pausa

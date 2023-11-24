@@ -11,7 +11,7 @@ HEIGHT = 500
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 clock = pygame.time.Clock()
 FPS = 20
-form_main = FormMain(screen, 150, 50, 500, 400, EColors.BLACK.value, EColors.WHITE.value, 5, True)
+form_main = FormMain(screen, 200, 50, 400, 400, EColors.BLACK.value, EColors.WHITE.value, 5, True)
 # level = LevelOne((WIDTH,HEIGHT))
 
 while True:
@@ -26,6 +26,7 @@ while True:
         break
 
     screen.fill("Black")
+
     form_main.update(events)
     
     pygame.display.flip()
