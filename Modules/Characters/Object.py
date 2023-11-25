@@ -6,16 +6,12 @@ class Object:
 
     def __init__(self, size_surface, position, image = None) -> None:
 
-        # Reemplazar por un try-except
         if type(image) == py.surface.Surface:
             self.image = image
         elif image == None:
             self.image = py.Surface(size_surface)
         else:
             self.image = self.load_image(image, size_surface)
-            # self.image = py.image.load(image)
-            # self.image = py.transform.scale(self.image, size_surface)
-
 
         self.rect_main = self.image.get_rect()
 
@@ -35,7 +31,7 @@ class Object:
             dictionary["top"] = py.Rect(main.left, main.top , main.width, 10)
         return dictionary
 
-    def all_rects(self):
+    def all_rects(self):    
         self.rect["bottom"].y = self.rect["main"].y + self.rect["main"].h - 10
         self.rect["right"].y = self.rect["main"].y
         self.rect["left"].y = self.rect["main"].y

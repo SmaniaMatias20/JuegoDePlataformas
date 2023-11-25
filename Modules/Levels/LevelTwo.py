@@ -1,4 +1,4 @@
-from Modules.Levels.Level import Level
+from Modules.Levels.LevelConfig import LevelConfig
 from Modules.Characters.Platform import Platform
 from Modules.Values.Assets import *
 from Modules.Characters.Hero import *
@@ -8,7 +8,7 @@ from Modules.Levels.LevelOne import *
 
 
 
-class LevelTwo(Level):
+class LevelTwo(LevelConfig):
 
     def __init__(self, size, FPS, caption="Title", icon=""):
         super().__init__(size, FPS, caption, icon)

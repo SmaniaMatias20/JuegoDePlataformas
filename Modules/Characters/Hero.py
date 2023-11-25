@@ -1,8 +1,10 @@
 import pygame as py
 from Modules.Characters.Enemy import Enemy
+from Modules.Characters.FallingObject import FallingObject
 from Modules.Characters.Item import Item
 from Modules.Characters.Object import *
 from Modules.Characters.Projectile import Projectile
+from Modules.Characters.Trap import Trap
 from Modules.Values.Assets import *
 from Modules.Characters.Platform import *
 
@@ -30,13 +32,15 @@ class Hero(Object):
         self.set_speed(speed)
         super().__init__(size, position, self.current_animation[self.step_counter]) 
 
-    def update(self, screen, pressed_keys, platforms, items, enemys):
+    def update(self, screen, pressed_keys, platforms, items, enemys, traps, stones):
         self.show_lives(screen)
         self.move_hero(screen, pressed_keys)
         self.update_projectile(screen)
         self.apply_gravity(screen, platforms)
         self.collide_with_items(items)
         self.collide_with_enemys(enemys)
+        self.collide_with_traps(traps)
+        self.collide_with_falling_objects(stones)
         
     
     def move_hero(self, screen: py.Surface, pressed_keys):
@@ -77,12 +81,15 @@ class Hero(Object):
         two_live = self.load_image(TWO_LIVE, (75, 30))
         three_live = self.load_image(THREE_LIVE, (75, 30))
 
-        if self.lives == 3:
+        if self.lives >= 3:
+            self.lives = 3
             screen.blit(three_live, [10, 30])
         elif self.lives == 2:
             screen.blit(two_live, [10, 30])
-        else:
+        elif self.lives == 1:
             screen.blit(one_live, [10, 30])
+        else:
+            print("Fin del juego")
 
     def shot_projectile(self):
         x = None
@@ -220,6 +227,33 @@ class Hero(Object):
                     print("Fin del Nivel") # Retornar algo para finalizar el nivel
             indice +=1
     
+    def collide_with_traps(self, traps:list['Trap']):
+        indice = 0
+        while indice < len(traps):
+            if self.rect_main.colliderect(traps[indice].rect_main):
+                self.lives -= 1
+                self.rect_main.x = 0
+                self.rect_main.y = 400
+                break
+            indice +=1
+
+    def collide_with_falling_objects(self, objects:list['FallingObject']):
+        indice = 0
+        while indice < len(objects):
+            if self.rect_main.colliderect(objects[indice].rect_main):
+                if objects[indice].type == "Stone":
+                    self.lives -= 1
+                    self.rect_main.x = 0
+                    self.rect_main.y = 400
+                    objects.pop(indice)
+                    indice -= 1
+                elif objects[indice].type == "Star":
+                    self.lives += 1
+                    objects.pop(indice)
+                    indice -= 1
+            indice +=1
+
+
     def collide_with_enemys(self, enemys:list['Enemy']):
         indice = 0
         while indice < len(enemys):
@@ -240,7 +274,9 @@ class Hero(Object):
                     self.points += 50
                     enemys.remove(enemy)
                     del enemy
-                    
+
+    
+
     # def collide_fo_effects(self):
         # TODO: Refactorizar
         #  FIXME: Refactorizar

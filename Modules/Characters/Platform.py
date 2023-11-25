@@ -1,6 +1,6 @@
 from Modules.Characters.Object import Object
 from Modules.Values.Assets import *
-import pygame as py
+
 
 
 class Platform(Object):
@@ -13,11 +13,8 @@ class Platform(Object):
         else:
             super().__init__(size, position, PLATFORM_IMAGE)   # Otra imagen de Plataforma
 
-
-    # def blit(self, screen):
-    #     # screen.blit(self.image, self.image.rect)
-    #     super().blit(screen)
-
+    
+    
 
     # @staticmethod
     # def create_list():

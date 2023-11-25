@@ -35,9 +35,12 @@ class FormMain(Form):
                                             185, 
                                             200, 
                                             80, 
-                                            "Modules\Assets\Images\Menu\star.png", 
+                                            "Modules\Assets\Images\Menu\\table.png", 
                                             self.btn_scores_click, 
-                                            "")
+                                            "",
+                                            "Scores",
+                                            "Arial Black",
+                                            25)
         
         # Boton para acceder al contenedor de niveles
         self.btn_levels = Button_Image(self._slave, 
@@ -47,10 +50,12 @@ class FormMain(Form):
                                             75, 
                                             200, 
                                             80, 
-                                            "Modules\Assets\Images\Menu\levels.png", 
+                                            "Modules\Assets\Images\Menu\\table.png", 
                                             self.btn_levels_click, 
                                             "",
-                                            color_background = EColors.BLACK.value)
+                                            "Levels",
+                                            "Arial Black",
+                                            25)
         
 
 
@@ -62,9 +67,12 @@ class FormMain(Form):
                                             300, 
                                             200, 
                                             80, 
-                                            "Modules\Assets\Images\Menu\exit.png", 
+                                            "Modules\Assets\Images\Menu\\table.png", 
                                             self.btn_quit_click, 
-                                            "hola")
+                                            "hola",
+                                            "Quit",
+                                            "Arial Black",
+                                            25)
         
         # Boton para configuracion
         self.btn_config = Button_Image(self._slave, 

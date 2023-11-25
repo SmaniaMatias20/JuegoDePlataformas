@@ -15,12 +15,10 @@ def flip_images(images: list):
     
     return list_images
 
-# MARIO_MUSIC = os.path.join('assets', 'music', 'mario_fondo.flac')
-# MARIO_COIN_SOUND = os.path.join('assets', 'music', 'mario-coin.mp3')
+# ATMOSPHERE
 GAME_ICON = os.path.join('Modules','Assets', 'Images', 'icon.png') 
 PLATFORM_IMAGE = os.path.join('Modules','Assets', 'Images', 'Atmosphere', 'platform.png') 
 BACKGROUND_IMAGE = os.path.join('Modules','Assets', 'Images', 'Atmosphere', 'background.png')
-
 
 # HERO
 HERO_QUIET = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero.png')
@@ -31,13 +29,16 @@ HERO_WALK_RIGHT_D = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-4.p
 HERO_WALK_RIGHT_E = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-5.png') 
 HERO_JUMP = os.path.join('Modules','Assets', 'Images', 'Hero', 'hero-6.png')
 PROJECTILE = os.path.join('Modules','Assets', 'Images', 'Hero', 'projectile.png')
-COIN = os.path.join('Modules','Assets', 'Images', 'Item', 'coin.png')
-CROWN = os.path.join('Modules','Assets', 'Images', 'Item', 'crown.png')
 ONE_LIVE = os.path.join('Modules','Assets', 'Images', 'Hero', '1-3.png')
 TWO_LIVE = os.path.join('Modules','Assets', 'Images', 'Hero', '2-3.png')
 THREE_LIVE = os.path.join('Modules','Assets', 'Images', 'Hero', '3-3.png')
 
-# ENEMY IMAGE
+# ITEMS
+COIN = os.path.join('Modules','Assets', 'Images', 'Item', 'coin.png')
+CROWN = os.path.join('Modules','Assets', 'Images', 'Item', 'crown.png')
+STAR = os.path.join('Modules','Assets', 'Images', 'Item', 'star.png')
+
+# ENEMY
 ENEMY_QUIET = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy.png')
 ENEMY_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-1.png')
 ENEMY_WALK_RIGHT_B = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-2.png')
@@ -45,6 +46,13 @@ ENEMY_WALK_RIGHT_C = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-
 ENEMY_WALK_RIGHT_D = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-4.png')
 ENEMY_WALK_RIGHT_E = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-5.png')
 ENEMY_WALK_RIGHT_F = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-6.png')
+
+# TRAP
+TRAP_ONE = os.path.join('Modules','Assets', 'Images', 'Trap', 'trap.png') 
+TRAP_TWO = os.path.join('Modules','Assets', 'Images', 'Trap', 'trap-1.png') 
+
+# FALLING OBJECTS
+STONE = os.path.join('Modules','Assets', 'Images', 'Falling', 'stone.png')  
 
 
 

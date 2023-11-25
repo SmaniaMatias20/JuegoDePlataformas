@@ -1,16 +1,12 @@
-import pygame as py
-
 from Modules.Values.EColors import EColors
 from Modules.Values.Assets import *
 from Modules.Values.EColors import *
 from Modules.Characters.Hero import *
+import pygame as py
 
-# FPS = 60
-
-class Level:
+class LevelConfig:
     
     def __init__(self, size):
-
 
         self.size = size
         self.screen = py.display.set_mode(self.size)
@@ -18,10 +14,9 @@ class Level:
         self.DEBUG = False
         self.set_fps(20)
         self.clock = py.time.Clock()
-        self.set_caption("Ragnarok")
+        self.set_caption("Juego Segundo Parcial")
         self.set_icon(GAME_ICON)
-        # self.time = py.time.get_ticks()
-
+        self.max_time = py.time.get_ticks() + 180 * 1000
 
     def update(self, list_events):
         for event in list_events:
@@ -30,7 +25,6 @@ class Level:
                     self.change_mode()
         self.get_pressed()
         self.fill_screen()
-        
 
     def draw_hitbox(self):
         if self.get_mode():
@@ -41,6 +35,11 @@ class Level:
 
             for key in self.hero.rect:
                     py.draw.rect(self.screen, EColors.GREEN.value, self.hero.rect[key], 3)
+            
+            for enemy in self.enemys:
+                for key in enemy.rect:
+                    py.draw.rect(self.screen, EColors.CYAN.value, enemy.rect[key], 3)
+
         
     def get_pressed(self):
         self.pressed_keys = py.key.get_pressed()  
@@ -93,6 +92,30 @@ class Level:
     def get_mode(self):
         return self.DEBUG
     
+    def create_text(self, message: str, color: tuple, size: int, font: str):
+        my_font = py.font.SysFont(font, size)
+        created_message = my_font.render(message, 0, color)
+
+        return created_message
     
+    def apply_text(self, message: str, location_x: int, location_y: int, color: list, size: int, font: str = ""):
+        created_message = self.create_text(message, color, size, font)
+        self.screen.blit(created_message, (location_x, location_y))
+
+    def show_time(self):
+        current_time = py.time.get_ticks()
+        remaining_time = max(self.max_time - current_time, 0)
+
+        remaining_seconds = remaining_time // 1000
+        minutes = remaining_seconds // 60
+        seconds = remaining_seconds % 60
+
+        message = f"{minutes:02}:{seconds:02}"
+
+        self.apply_text(message, 350, 10, EColors.WHITE.value, 30, "Arial Black")
+
+        return seconds
+    
+
 
     

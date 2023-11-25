@@ -5,8 +5,9 @@ from Modules.Values.Assets import *
 
 
 class Enemy(Object):
-    def __init__(self, size, position=(0,0), speed=3):
+    def __init__(self, size, move_position, position=(0,0), speed=3):
         self.size = size
+        self.move_position = move_position
         self.animations = self.set_animations()
         self.state = "Left"
         self.current_animation = self.animations[self.state]
@@ -23,13 +24,15 @@ class Enemy(Object):
         if self.state == "Left":
             self.current_animation = self.animations[self.state]
             self.rect_main.x -= self.speed
-            if self.rect_main.x < 150:
+            if self.rect_main.x < self.move_position[0]: # Hasta que posision se va a mover cada enemigo
                 self.state = "Right"
         elif self.state == "Right":
             self.current_animation = self.animations[self.state]
             self.rect_main.x += self.speed
-            if self.rect_main.x + 30 > screen.get_width() - 200:
+            if self.rect_main.x + 30 > self.move_position[1]:
                 self.state = "Left" 
+                
+        self.all_rects()
 
     def set_animations(self):
         enemy_quiet = []

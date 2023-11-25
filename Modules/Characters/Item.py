@@ -11,4 +11,4 @@ class Item(Object):
         if self.type == "Coin":
             super().__init__(size, position, COIN)
         elif self.type == "Crown":
-            super().__init__(size, position, CROWN)   # Otra imagen 
+            super().__init__(size, position, CROWN)  
