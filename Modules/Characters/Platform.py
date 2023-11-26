@@ -10,7 +10,7 @@ class Platform(Object):
 
         if type == "One":
             super().__init__(size, position, PLATFORM_IMAGE)
-        else:
-            super().__init__(size, position, PLATFORM_IMAGE)   # Otra imagen de Plataforma
+        # else:
+        #     super().__init__(size, position, PLATFORM_IMAGE)   # Otra imagen de Plataforma
 
     

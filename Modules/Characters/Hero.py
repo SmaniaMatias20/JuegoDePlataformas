@@ -13,6 +13,7 @@ from Modules.Characters.Platform import *
 class Hero(Object):
 
     def __init__(self, size, position=(0,0), speed=3) -> None:
+        self.name = "Matias"
         self.size = size
         self.animations = self.set_animations()
         self.state = "Quiet"
@@ -25,11 +26,10 @@ class Hero(Object):
         self.jump = False
         self.points = 0
         self.lives = 3
-        #########################
         self.flag_shot = False
         self.time_last_shot = 0
         self.list_projectile = []  
-        #########################
+        self.level_complete = False
         self.set_speed(speed)
         super().__init__(size, position, self.current_animation[self.step_counter]) 
 
@@ -38,10 +38,10 @@ class Hero(Object):
         self.move_hero(screen, pressed_keys)
         self.update_projectile(screen)
         self.apply_gravity(screen, platforms)
-        self.collide_with_items(items)
         self.collide_with_enemys(enemys)
         self.collide_with_traps(traps)
         self.collide_with_falling_objects(stones)
+        self.collide_with_items(items)
         
     
     def move_hero(self, screen: py.Surface, pressed_keys):
@@ -85,11 +85,11 @@ class Hero(Object):
 
         if self.lives >= 3:
             self.lives = 3
-            screen.blit(three_live, [10, 30])
+            screen.blit(three_live, [5, 20])
         elif self.lives == 2:
-            screen.blit(two_live, [10, 30])
+            screen.blit(two_live, [5, 20])
         elif self.lives == 1:
-            screen.blit(one_live, [10, 30])
+            screen.blit(one_live, [5, 20])
         else:
             print("Fin del juego")
 
@@ -221,7 +221,8 @@ class Hero(Object):
                     self.points += 50
                     items.pop(indice)
                     indice -= 1
-                    print("Fin del Nivel") # Retornar algo para finalizar el nivel
+                    self.level_complete = True
+                    # print("Fin del Nivel") # Retornar algo para finalizar el nivel
             indice +=1
     
     def collide_with_traps(self, traps:list['Trap']):
@@ -275,8 +276,8 @@ class Hero(Object):
                     enemys.remove(enemy)
                     del enemy
 
-    
 
+    # Verificar con el set_music()
     def collide_coin_effects(self):
         music = py.mixer.Sound(COIN_SOUND)
         music.set_volume(0.2)

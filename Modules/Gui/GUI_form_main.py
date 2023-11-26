@@ -18,8 +18,6 @@ class FormMain(Form):
     def __init__(self,screen,x,y,w,h,color_background, color_border = "Black", border_size = -1, active = True):
         super().__init__(screen, x,y,w,h,color_background, color_border, border_size, active)
         self.exit = False
-        
-
 
         # Boton para acceder a las puntuaciones
         self.btn_scores = Button_Image(self._slave, 
@@ -108,10 +106,11 @@ class FormMain(Form):
     
 
     def btn_scores_click(self, param):
-        # Sacar la informacion de un archivo.
-        diccionario = [{"Jugador": "Mario", "Score": 250},
-                      {"Jugador": "Gio", "Score": 150},
-                      {"Jugador": "Fausto", "Score": 100},]
+        diccionario = []
+        
+        result = get_top_scores("Modules\Data\scores.db")
+        for row in result:
+            diccionario.append({"Player": row[0], "Score": row[1]})
         
         nuevo_form = FormMenuScore(screen = self._master, 
         x = 200, 

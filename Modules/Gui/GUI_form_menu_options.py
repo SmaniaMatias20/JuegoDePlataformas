@@ -21,45 +21,45 @@ class FormMenuOptions(Form):
         self._slave = aux_image
         self.flag_play = True
 
-        # self.volumen = 0.2
+        self.volumen = 0.2
         # pygame.mixer.init()
         # pygame.mixer.music.load("Modules\Assets\Music\Vengeance (Loopable).wav")
         # pygame.mixer.music.set_volume(self.volumen)
         # pygame.mixer.music.play(-1)
 
-        # self.btn_play_music = Button_Image(self._slave, 
-        #                                 x, 
-        #                                 y, 
-        #                                 300, 
-        #                                 75, 
-        #                                 50, 
-        #                                 50,
-        #                                 "Modules\Assets\Images\Menu\sound-on.png",
-        #                                 self.btn_play_click, 
-        #                                 "")
+        self.btn_play_music = Button_Image(self._slave, 
+                                        x, 
+                                        y, 
+                                        350, 
+                                        20, 
+                                        30, 
+                                        30,
+                                        "Modules\Assets\Images\Menu\sound.png",
+                                        self.btn_play_click, 
+                                        "")
 
-        # self.slider_volumen = Slider(self._slave, 
-        #                                     x, 
-        #                                     y, 
-        #                                     200, 
-        #                                     30, 
-        #                                     200, 
-        #                                     15, 
-        #                                     self.volumen, 
-        #                                     EColors.BLACK.value, 
-        #                                     EColors.WHITE.value)
+        self.slider_volumen = Slider(self._slave, 
+                                            x, 
+                                            y, 
+                                            50, 
+                                            150, 
+                                            200, 
+                                            15, 
+                                            self.volumen, 
+                                            EColors.WHITE.value, 
+                                            EColors.GOLDEN.value)
         
-        # porcentaje_volumen = f"{self.volumen * 100}%"
-        # self.label_volumen = Label(self._slave, 
-        #                                     100, 
-        #                                     10, 
-        #                                     50, 
-        #                                     50, 
-        #                                     porcentaje_volumen, 
-        #                                     "Comic Sans MS", 
-        #                                     20, 
-        #                                     EColors.WHITE.value,
-        #                                     "Modules\Assets\Images\Menu\porcentaje.png")
+        porcentaje_volumen = f"{self.volumen * 100}%"
+        self.label_volumen = Label(self._slave, 
+                                            255, 
+                                            130, 
+                                            50, 
+                                            50, 
+                                            porcentaje_volumen, 
+                                            "Comic Sans MS", 
+                                            15, 
+                                            EColors.BLACK.value,
+                                            "Modules\Assets\Images\Menu\\table.png")
         
         self._btn_home = Button_Image(screen=self._slave,
                             master_x = self._x,
@@ -72,31 +72,22 @@ class FormMenuOptions(Form):
                             onclick_param= "",
                             path_image= "Modules\Assets\Images\Menu\home.png")
         
-        self._btn_pause = Button_Image(screen = self._slave, 
-                        master_x = self._x,
-                        master_y= self._y,
-                        x = self._w - 150,
-                        y = self._h - 50,
-                        w = 200,
-                        h = 80,
-                        onclick = self.btn_pause_click,
-                        onclick_param = "",
-                        path_image = "Modules\Assets\Images\Menu\\table.png") 
+  
         
-        # self.lista_widgets.append(self.label_volumen)
-        # self.lista_widgets.append(self.slider_volumen)
-        # self.lista_widgets.append(self.btn_play_music)
+        self.lista_widgets.append(self.label_volumen)
+        self.lista_widgets.append(self.slider_volumen)
+        self.lista_widgets.append(self.btn_play_music)
         self.lista_widgets.append(self._btn_home)
-        self.lista_widgets.append(self._btn_pause)
+
     
     def render(self):
         self._slave.fill(self._color_background)
 
-    # def update_volumen(self, lista_eventos):
-    #     self.volumen = self.slider_volumen.value
-    #     self.label_volumen.update(lista_eventos)
-    #     self.label_volumen.set_text(f"{round(self.volumen * 100)}%")
-    #     pygame.mixer.music.set_volume(self.volumen)
+    def update_volumen(self, lista_eventos):
+        self.volumen = self.slider_volumen.value
+        self.label_volumen.update(lista_eventos)
+        self.label_volumen.set_text(f"{round(self.volumen * 100)}%")
+        pygame.mixer.music.set_volume(self.volumen)
 
     def btn_play_click(self, param):
         if self.flag_play:
@@ -112,7 +103,7 @@ class FormMenuOptions(Form):
             for widget in self.lista_widgets:
                 widget.update(events)
             self.draw() 
-            # self.update_volumen(events) 
+            self.update_volumen(events) 
         else:
             self.hijo.update(events)
 

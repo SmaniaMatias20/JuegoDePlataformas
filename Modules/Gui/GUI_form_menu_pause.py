@@ -14,12 +14,13 @@ from Modules.Levels.DriverLevels import *
 
     
 class FormMenuPause(Form):
-    def __init__(self, screen, x,y,w,h,color_background, color_border, active, path_image=""):
+    def __init__(self, screen, x,y,w,h,color_background, color_border, active, level, path_image=""):
         super().__init__(screen, x,y,w,h,color_background, color_border, active)
         aux_image = pygame.image.load(path_image)
         aux_image = pygame.transform.scale(aux_image, (w,h))
         self._slave = aux_image
         self.flag_play = True
+        self.level = level
 
         # self.volumen = 0.2
         # pygame.mixer.init()
@@ -61,32 +62,35 @@ class FormMenuPause(Form):
         #                                     EColors.WHITE.value,
         #                                     "Modules\Assets\Images\Menu\porcentaje.png")
         
-        self._btn_home = Button_Image(screen=self._slave,
+        self._btn_sound = Button_Image(screen=self._slave,
                             master_x = self._x,
                             master_y= self._y,
                             x = self._w - 50,
-                            y = self._h - 50,
+                            y = self._h - 380,
                             w= 30,
                             h= 30,
-                            onclick= self.btn_home_click,
+                            onclick= self.btn_play_click,
                             onclick_param= "",
-                            path_image= "Modules\Assets\Images\Menu\home.png")
+                            path_image= "Modules\Assets\Images\Menu\sound.png")
         
         self._btn_pause = Button_Image(screen = self._slave, 
                         master_x = self._x,
                         master_y= self._y,
-                        x = self._w - 150,
-                        y = self._h - 50,
+                        x = self._w - 300,
+                        y = self._h - 300,
                         w = 200,
                         h = 80,
-                        onclick = self.btn_pause_click,
+                        onclick = self.btn_unpause_click,
                         onclick_param = "",
-                        path_image = "Modules\Assets\Images\Menu\\table.png") 
+                        path_image = "Modules\Assets\Images\Menu\\table.png",
+                        text = "Continue",
+                        font = "Arial Black",
+                        font_size = 25) 
         
         # self.lista_widgets.append(self.label_volumen)
         # self.lista_widgets.append(self.slider_volumen)
         # self.lista_widgets.append(self.btn_play_music)
-        self.lista_widgets.append(self._btn_home)
+        self.lista_widgets.append(self._btn_sound)
         self.lista_widgets.append(self._btn_pause)
     
     def render(self):
@@ -108,16 +112,16 @@ class FormMenuPause(Form):
 
 
     def update(self, events):
-        if self.verificar_dialog_result():
-            for widget in self.lista_widgets:
-                widget.update(events)
-            self.draw() 
+        if self.level.pause:
+            if self.verificar_dialog_result():
+                for widget in self.lista_widgets:
+                    widget.update(events)
+                self.draw() 
             # self.update_volumen(events) 
-        else:
-            self.hijo.update(events)
+            else:
+                self.hijo.update(events)
+            
+    def btn_unpause_click(self, param):
+        self.level.resume_game()
 
-    def btn_home_click(self, param):
-        self.end_dialog()
-    
-    def btn_pause_click(self, param):
         self.end_dialog()

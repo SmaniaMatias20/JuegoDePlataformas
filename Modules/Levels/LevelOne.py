@@ -15,6 +15,7 @@ from Modules.Levels.LevelOne import *
 class LevelOne(LevelConfig):
     def __init__(self, size):
         super().__init__(size)
+        self.type = "Level One"
         self.set_background_image(BACKGROUND_IMAGE)
         self.set_enemys()
         self.set_platforms()
@@ -37,6 +38,7 @@ class LevelOne(LevelConfig):
         self.show_score(f"{self.hero.points}")
         self.draw_hitbox()
         self.show_time()
+        self.complete = self.hero.level_complete
         
     def set_falling_objects(self):
         self.falling_objects = self.create_list_falling_objects(5)
@@ -129,12 +131,12 @@ class LevelOne(LevelConfig):
         list = []
 
         trap = Trap((60, 20), (170, 180), "One")
-        trap_b = Trap((60, 20), (360, 180), "One")
+        # trap_b = Trap((60, 20), (360, 180), "One")
         trap_c = Trap((60, 20), (700, 425), "One")
  
 
         list.append(trap)
-        list.append(trap_b)
+        # list.append(trap_b)
         list.append(trap_c)
 
         return list
@@ -147,43 +149,12 @@ class LevelOne(LevelConfig):
             list.append(falling_object)
         
         
-        for j in range(1):
+        for j in range(2):
             star = FallingObject((30, 30), (0, 0), "Star")
             list.append(star)
 
         return list
 
-
-    
-
-
-
-
-
-
-
-    # def set_platform(self):
-    #     x = self.size[0] * 0
-    #     y = self.size[1] - 10
-    #     self.platform = Platform((self.size[0], 100), (x, y))
-
-
-
-    # def blit_platform(self):
-    #     self.platform.blit(self.screen)
-
-
-    # def blit_falling_objects(self):
-    #     for fo in self.falling_objects:
-    #         fo.move_down()
-    #         fo.blit(self.screen)
-
-
-    
-    # def check_collides(self):
-    #     self.heroe.collide_with_falling_objects(self.falling_objects)
-
-    #     self.show_score(self.heroe.points)
 
 
 

@@ -17,7 +17,10 @@ class LevelConfig:
         self.clock = py.time.Clock()
         self.set_caption("Juego Segundo Parcial")
         self.set_icon(GAME_ICON)
-        self.max_time = py.time.get_ticks() + 180 * 1000
+        self.max_time = 180000
+        self.start_time = py.time.get_ticks()
+        self.time_remaining = 180
+        
 
     def update(self, list_events):
         for event in list_events:
@@ -26,6 +29,7 @@ class LevelConfig:
                     self.change_mode()
         self.get_pressed()
         self.fill_screen()
+        # self.set_music()
 
     def draw_hitbox(self):
         if self.get_mode():
@@ -46,10 +50,9 @@ class LevelConfig:
         self.pressed_keys = py.key.get_pressed()  
     
     def show_score(self, text):
-        # image_score = self.load_image
-        font = py.font.SysFont('Arial Black', 20)
+        font = py.font.SysFont('Arial Black', 25)
         text = font.render(f"score: {text}", True, EColors.WHITE.value)
-        self.screen.blit(text, (5, 0))
+        self.screen.blit(text, (self.screen.get_width() - 200, self.screen.get_height() - 490))
   
     def set_caption(self, caption):
         py.display.set_caption(caption)
@@ -79,9 +82,6 @@ class LevelConfig:
         self.background_image = py.image.load(background)
         self.background_image = py.transform.scale(self.background_image, self.size)
 
-    def set_fuente(self):
-        pass
-
     def fill_screen(self, color=None):
         if color != None:
             self.screen.fill(color)
@@ -104,19 +104,36 @@ class LevelConfig:
         created_message = self.create_text(message, color, size, font)
         self.screen.blit(created_message, (location_x, location_y))
 
+    def pause_game(self):
+        self.pause = True
+        self.paused_time = py.time.get_ticks() - self.start_time
+
+    def resume_game(self):
+        self.pause = False
+        self.start_time = py.time.get_ticks() - self.paused_time
+
     def show_time(self):
-        current_time = py.time.get_ticks()
-        remaining_time = max(self.max_time - current_time, 0)
+
+        if not self.pause:
+            current_time = py.time.get_ticks() - self.start_time
+            remaining_time = max(self.max_time - current_time, 0)
+        else:
+            remaining_time = max(self.max_time - self.paused_time, 0)
 
         remaining_seconds = remaining_time // 1000
         minutes = remaining_seconds // 60
         seconds = remaining_seconds % 60
 
+        self.time_remaining = minutes * 60 + seconds
+
         message = f"{minutes:02}:{seconds:02}"
 
-        self.apply_text(message, 350, 10, EColors.WHITE.value, 30, "Arial Black")
+        if self.time_remaining <= 20:
+            self.apply_text(message, 350, 10, EColors.RED.value, 30, "Arial Black")
+        else:
+            self.apply_text(message, 350, 10, EColors.WHITE.value, 30, "Arial Black")
 
-        return seconds
+
     
 
 
