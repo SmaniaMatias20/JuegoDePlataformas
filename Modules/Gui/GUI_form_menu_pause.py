@@ -13,7 +13,7 @@ from Modules.Levels.DriverLevels import *
 
 
     
-class FormMenuOptions(Form):
+class FormMenuPause(Form):
     def __init__(self, screen, x,y,w,h,color_background, color_border, active, path_image=""):
         super().__init__(screen, x,y,w,h,color_background, color_border, active)
         aux_image = pygame.image.load(path_image)

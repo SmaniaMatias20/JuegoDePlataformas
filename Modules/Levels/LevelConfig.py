@@ -7,12 +7,13 @@ import pygame as py
 class LevelConfig:
     
     def __init__(self, size):
-
+        self.complete = False
+        self.pause = False
         self.size = size
         self.screen = py.display.set_mode(self.size)
         self.running = True
         self.DEBUG = False
-        self.set_fps(20)
+        self.set_fps(30)
         self.clock = py.time.Clock()
         self.set_caption("Juego Segundo Parcial")
         self.set_icon(GAME_ICON)
@@ -45,6 +46,7 @@ class LevelConfig:
         self.pressed_keys = py.key.get_pressed()  
     
     def show_score(self, text):
+        # image_score = self.load_image
         font = py.font.SysFont('Arial Black', 20)
         text = font.render(f"score: {text}", True, EColors.WHITE.value)
         self.screen.blit(text, (5, 0))

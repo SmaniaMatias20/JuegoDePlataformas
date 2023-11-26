@@ -13,6 +13,7 @@ from Modules.Characters.Platform import *
 class Hero(Object):
 
     def __init__(self, size, position=(0,0), speed=3) -> None:
+        self.size = size
         self.animations = self.set_animations()
         self.state = "Quiet"
         self.current_animation = self.animations[self.state]
@@ -72,6 +73,7 @@ class Hero(Object):
             time = py.time.get_ticks()
             if time - self.time_last_shot >= 1000:
                 self.shot_projectile() 
+                self.shot_projectile_effects()
                 self.flag_shot = False
                 self.time_last_shot = time
      
@@ -132,21 +134,15 @@ class Hero(Object):
         hero_quiet = []
         hero_walk_right = []
         hero_jump = []  
-        
-        image_hero_quiet = self.load_image(HERO_QUIET, (50, 50))
-        image_hero_walk_right_a = self.load_image(HERO_WALK_RIGHT_A, (50, 50))
-        image_hero_walk_right_b = self.load_image(HERO_WALK_RIGHT_B, (50, 50))
-        image_hero_walk_right_c = self.load_image(HERO_WALK_RIGHT_C, (50, 50))
-        image_hero_walk_right_d = self.load_image(HERO_WALK_RIGHT_D, (50, 50))
-        image_hero_walk_right_e = self.load_image(HERO_WALK_RIGHT_E, (50, 50))
-        image_hero_jump = self.load_image(HERO_JUMP, (50, 50))
+        list_path = [HERO_WALK_RIGHT_A, HERO_WALK_RIGHT_B, HERO_WALK_RIGHT_C, HERO_WALK_RIGHT_D, HERO_WALK_RIGHT_E]
 
+        for path in list_path:
+            image_hero_walk_right = self.load_image(path, self.size) 
+            hero_walk_right.append(image_hero_walk_right)
+
+        image_hero_quiet = self.load_image(HERO_QUIET, self.size)
+        image_hero_jump = self.load_image(HERO_JUMP, self.size)
         hero_quiet.append(image_hero_quiet)
-        hero_walk_right.append(image_hero_walk_right_a)
-        hero_walk_right.append(image_hero_walk_right_b)
-        hero_walk_right.append(image_hero_walk_right_c)
-        hero_walk_right.append(image_hero_walk_right_d)
-        hero_walk_right.append(image_hero_walk_right_e)
         hero_jump.append(image_hero_jump)
 
         animations = {}
@@ -219,6 +215,7 @@ class Hero(Object):
                 if items[indice].type == "Coin":
                     self.points += 10
                     items.pop(indice)
+                    self.collide_coin_effects()
                     indice -= 1
                 else:
                     self.points += 50
@@ -242,12 +239,14 @@ class Hero(Object):
         while indice < len(objects):
             if self.rect_main.colliderect(objects[indice].rect_main):
                 if objects[indice].type == "Stone":
+                    self.bang_effects()
                     self.lives -= 1
                     self.rect_main.x = 0
                     self.rect_main.y = 400
                     objects.pop(indice)
                     indice -= 1
                 elif objects[indice].type == "Star":
+                    self.collide_star_effects()
                     self.lives += 1
                     objects.pop(indice)
                     indice -= 1
@@ -270,6 +269,7 @@ class Hero(Object):
         for projectile in self.list_projectile:
             for enemy in enemys:
                 if projectile.rect_main.colliderect(enemy.rect_main):
+                    self.bang_effects()
                     self.list_projectile.remove(projectile)
                     self.points += 50
                     enemys.remove(enemy)
@@ -277,13 +277,23 @@ class Hero(Object):
 
     
 
-    # def collide_fo_effects(self):
-        # TODO: Refactorizar
-        #  FIXME: Refactorizar
-        # music = py.mixer.Sound(MARIO_COIN_SOUND)
-        # music.set_volume(0.5)
-        # music.play()
+    def collide_coin_effects(self):
+        music = py.mixer.Sound(COIN_SOUND)
+        music.set_volume(0.2)
+        music.play()
 
-    # def blit(self, screen):
-        # screen.blit(self.mouth.image, self.mouth.rect)
-        # super().blit(screen)
+    def shot_projectile_effects(self):
+        music = py.mixer.Sound(PROJECTILE_SOUND)
+        music.set_volume(0.2)
+        music.play()
+
+    def bang_effects(self):
+        music = py.mixer.Sound(BANG_SOUND)
+        music.set_volume(0.1)
+        music.play()
+    
+    def collide_star_effects(self):
+        music = py.mixer.Sound(STAR_SOUND)
+        music.set_volume(0.2)
+        music.play()
+

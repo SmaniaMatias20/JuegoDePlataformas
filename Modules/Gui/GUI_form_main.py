@@ -19,13 +19,7 @@ class FormMain(Form):
         super().__init__(screen, x,y,w,h,color_background, color_border, border_size, active)
         self.exit = False
         
-        ########################################################
-        # WIDTH = 800
-        # HEIGHT = 500
-        # self.screen = pygame.display.set_mode(size)
-        # self.clock = pygame.time.Clock()
-        # self.FPS = 30
-        ########################################################
+
 
         # Boton para acceder a las puntuaciones
         self.btn_scores = Button_Image(self._slave, 
@@ -150,7 +144,7 @@ class FormMain(Form):
         self.show_dialog(menu_play)
 
     def btn_config_click(self, param):
-        menu_options = FormMenuOptions(self._master, 
+        self.menu_options = FormMenuOptions(self._master, 
         x= 200, 
         y= 25, 
         w= 400, 
@@ -160,7 +154,7 @@ class FormMain(Form):
         active = True, 
         path_image = "Modules\Assets\Images\Menu\window.png")
 
-        self.show_dialog(menu_options)
+        self.show_dialog(self.menu_options)
 
     def btn_quit_click(self, param):
         self.exit = True

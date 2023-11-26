@@ -19,6 +19,7 @@ class Enemy(Object):
     def update(self, screen):
         self.move_enemy(screen)
         self.animation(screen)
+        
     
     def move_enemy(self, screen: py.Surface):
         if self.state == "Left":
@@ -31,35 +32,21 @@ class Enemy(Object):
             self.rect_main.x += self.speed
             if self.rect_main.x + 30 > self.move_position[1]:
                 self.state = "Left" 
-                
+
+            
         self.all_rects()
 
     def set_animations(self):
-        enemy_quiet = []
         enemy_walk_right = []
- 
-        image_enemy_quiet = self.load_image(ENEMY_QUIET, self.size)
-        image_enemy_walk_right_a = self.load_image(ENEMY_WALK_RIGHT_A, self.size)
-        image_enemy_walk_right_b = self.load_image(ENEMY_WALK_RIGHT_B, self.size)
-        image_enemy_walk_right_c = self.load_image(ENEMY_WALK_RIGHT_C, self.size)
-        image_enemy_walk_right_d = self.load_image(ENEMY_WALK_RIGHT_D, self.size)
-        image_enemy_walk_right_e = self.load_image(ENEMY_WALK_RIGHT_E, self.size)
-        image_enemy_walk_right_f = self.load_image(ENEMY_WALK_RIGHT_F, self.size)
-
-
-        enemy_quiet.append(image_enemy_quiet)
-        enemy_walk_right.append(image_enemy_walk_right_a)
-        enemy_walk_right.append(image_enemy_walk_right_b)
-        enemy_walk_right.append(image_enemy_walk_right_c)
-        enemy_walk_right.append(image_enemy_walk_right_d)
-        enemy_walk_right.append(image_enemy_walk_right_e)
-        enemy_walk_right.append(image_enemy_walk_right_f)
+        list_path = [ENEMY_WALK_RIGHT_A, ENEMY_WALK_RIGHT_B, ENEMY_WALK_RIGHT_C, ENEMY_WALK_RIGHT_D, ENEMY_WALK_RIGHT_E, ENEMY_WALK_RIGHT_F, ENEMY_WALK_RIGHT_G, ENEMY_WALK_RIGHT_H]
+        
+        for path in list_path:
+            image_enemy_walk_right = self.load_image(path, self.size) 
+            enemy_walk_right.append(image_enemy_walk_right)
 
         animations = {}
-        animations["Quiet"] = enemy_quiet
         animations["Right"] = enemy_walk_right
         animations["Left"]  = flip_images(enemy_walk_right)
-
 
         return animations
     
@@ -71,7 +58,10 @@ class Enemy(Object):
         screen.blit(self.current_animation[self.step_counter], self.rect_main)
         self.step_counter += 1
 
-    
+    def sound_effects(self):
+        music = py.mixer.Sound(ZOMBIE_SOUND)
+        music.set_volume(0.2)
+        music.play()
             
 
         

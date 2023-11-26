@@ -15,7 +15,6 @@ from Modules.Levels.LevelOne import *
 class LevelOne(LevelConfig):
     def __init__(self, size):
         super().__init__(size)
-        self.complete = False
         self.set_background_image(BACKGROUND_IMAGE)
         self.set_enemys()
         self.set_platforms()
@@ -58,7 +57,7 @@ class LevelOne(LevelConfig):
         x = self.size[0] * 0
         y = self.size[1] - 105
 
-        self.hero = Hero((50, 50), (x, y), 10)
+        self.hero = Hero((50, 50), (x, y), 7)
 
     def blit_falling_objects(self):
         for fo in self.falling_objects:
@@ -124,16 +123,14 @@ class LevelOne(LevelConfig):
 
         list.append(crown)
 
-
-
         return list
     
     def create_list_traps(self):
         list = []
 
-        trap = Trap((70, 30), (170, 170), "One")
-        trap_b = Trap((70, 30), (360, 170), "One")
-        trap_c = Trap((70, 30), (700, 415), "One")
+        trap = Trap((60, 20), (170, 180), "One")
+        trap_b = Trap((60, 20), (360, 180), "One")
+        trap_c = Trap((60, 20), (700, 425), "One")
  
 
         list.append(trap)
@@ -148,6 +145,7 @@ class LevelOne(LevelConfig):
         for i in range(size):
             falling_object = FallingObject((20, 20), (0, 0), "Stone")
             list.append(falling_object)
+        
         
         for j in range(1):
             star = FallingObject((30, 30), (0, 0), "Star")

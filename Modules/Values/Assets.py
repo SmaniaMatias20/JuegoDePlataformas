@@ -39,13 +39,14 @@ CROWN = os.path.join('Modules','Assets', 'Images', 'Item', 'crown.png')
 STAR = os.path.join('Modules','Assets', 'Images', 'Item', 'star.png')
 
 # ENEMY
-ENEMY_QUIET = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy.png')
 ENEMY_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-1.png')
 ENEMY_WALK_RIGHT_B = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-2.png')
 ENEMY_WALK_RIGHT_C = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-3.png')
 ENEMY_WALK_RIGHT_D = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-4.png')
 ENEMY_WALK_RIGHT_E = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-5.png')
 ENEMY_WALK_RIGHT_F = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-6.png')
+ENEMY_WALK_RIGHT_G = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-7.png')
+ENEMY_WALK_RIGHT_H = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-8.png')
 
 # TRAP
 TRAP_ONE = os.path.join('Modules','Assets', 'Images', 'Trap', 'trap.png') 
@@ -53,6 +54,13 @@ TRAP_TWO = os.path.join('Modules','Assets', 'Images', 'Trap', 'trap-1.png')
 
 # FALLING OBJECTS
 STONE = os.path.join('Modules','Assets', 'Images', 'Falling', 'stone.png')  
+
+# SOUND
+COIN_SOUND = os.path.join('Modules','Assets', 'Music', 'coin.mp3')  
+ZOMBIE_SOUND = os.path.join('Modules','Assets', 'Music', 'zombie.mp3')  
+PROJECTILE_SOUND = os.path.join('Modules','Assets', 'Music', 'projectile.mp3')  
+BANG_SOUND = os.path.join('Modules','Assets', 'Music', 'bang.mp3')  
+STAR_SOUND = os.path.join('Modules','Assets', 'Music', 'star.mp3')  
 
 
 
