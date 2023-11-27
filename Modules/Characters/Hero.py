@@ -34,7 +34,7 @@ class Hero(Object):
         self.set_speed(speed)
         super().__init__(size, position, self.current_animation[self.step_counter]) 
 
-    def update(self, screen, pressed_keys, platforms, items, enemys, traps, stones, boss):
+    def update(self, screen, pressed_keys, platforms, items, enemys, traps, stones, boss=None):
         super().update()
         self.show_lives(screen)
         self.move_hero(screen, pressed_keys)
@@ -209,11 +209,20 @@ class Hero(Object):
                 self.jump = True
 
     def collide_with_boss(self, boss: Boss):
-        
-        if self.rect_main.colliderect(boss.rect_main):
-            self.lives -= 1 
-            self.rect_main.x = 0
-            self.rect_main.y = 400 
+        try:
+            for fire in boss.list_projectiles:
+                if fire.rect_main.colliderect(self.rect_main) or self.rect_main.colliderect(boss.rect_main):
+                    self.sound_effects(BANG_SOUND, 0.1)
+                    boss.list_projectiles.remove(fire)
+                    self.lives -= 1 
+                    self.rect_main.x = 0
+                    self.rect_main.y = 400 
+
+            self.kill_boss(boss)
+        except AttributeError:
+            pass
+
+
 
     def collide_with_items(self, items:list['Item']):
         indice = 0
@@ -288,8 +297,14 @@ class Hero(Object):
                     self.points += 50
                     enemys.remove(enemy)
                     del enemy
+    
+    def kill_boss(self, boss:Boss):
+        for projectile in self.list_projectile:
+            if projectile.rect_main.colliderect(boss.rect_main):
+                self.sound_effects(BANG_SOUND, 0.1)
+                self.list_projectile.remove(projectile)
+                boss.lives -= 1
 
-    def sound_effects(self, path, volume):
-        music = py.mixer.Sound(path)
-        music.set_volume(volume)
-        music.play()
+
+
+

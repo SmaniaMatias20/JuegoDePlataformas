@@ -65,7 +65,7 @@ class LevelOne(LevelConfig):
         x = self.size[0] * 0
         y = self.size[1] - 105
 
-        self.hero = Hero((50, 50), (x, y), 6)
+        self.hero = Hero((50, 50), (x, y), 7)
 
     def blit_falling_objects(self):
         for fo in self.falling_objects:

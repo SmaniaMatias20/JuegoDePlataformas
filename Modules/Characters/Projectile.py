@@ -8,7 +8,7 @@ import random
 class Projectile(Object):
     def __init__(self, size, direction, position=(0,0), type="One"):
         self.type = type
-
+        
         if self.type == "One":
             self.current_animation = self.load_image(PROJECTILE, size)
             if direction == "Left":
@@ -34,6 +34,7 @@ class Projectile(Object):
         else:
             if self.direction == "Quiet":
                 self.rect_main.x -= self.speed
+            
 
 
 

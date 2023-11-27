@@ -64,7 +64,7 @@ BANG_SOUND = os.path.join('Modules','Assets', 'Music', 'bang.mp3')
 STAR_SOUND = os.path.join('Modules','Assets', 'Music', 'star.mp3') 
 TRAP_SOUND = os.path.join('Modules','Assets', 'Music', 'trap.mp3') 
 GEM_SOUND = os.path.join('Modules','Assets', 'Music', 'gem.mp3')  
-
+FIRE_SOUND = os.path.join('Modules','Assets', 'Music', 'fire.mp3')   
 
 # BOSS
 BOSS_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-1.png')

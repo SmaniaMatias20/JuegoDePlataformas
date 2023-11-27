@@ -40,7 +40,9 @@ class LevelThree(LevelConfig):
         for enemy in self.enemys:
             enemy.update(self.screen)
 
-        self.boss.update(self.screen, self.time_remaining)
+        if self.boss.lives > 0:
+            self.boss.update(self.screen)
+
         self.blit_falling_objects()
         self.hero.update(self.screen, self.pressed_keys, self.platforms, self.items, self.enemys, self.traps, self.falling_objects, self.boss)
         self.show_score(f"{self.hero.points}")
@@ -67,7 +69,7 @@ class LevelThree(LevelConfig):
         x = self.size[0] * 0
         y = self.size[1] - 105
 
-        self.hero = Hero((50, 50), (x, y), 5)
+        self.hero = Hero((50, 50), (x, y), 7)
     
     def set_boss(self):
         self.boss = Boss((50, 80), (450, 650),(500, 130), 3)

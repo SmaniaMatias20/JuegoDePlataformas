@@ -92,11 +92,16 @@ class Object:
         else:
             raise ValueError('Invalid direction')
    
-    def blit(self, screen):
-        screen.blit(self.image, self.rect_main)
-
     def load_image(self, path, size_surface):
         image = py.image.load(path)
         image = py.transform.scale(image, size_surface)
 
         return image
+    
+    def sound_effects(self, path, volume):
+        music = py.mixer.Sound(path)
+        music.set_volume(volume)
+        music.play()
+
+    def blit(self, screen):
+        screen.blit(self.image, self.rect_main)

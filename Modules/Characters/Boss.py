@@ -7,7 +7,7 @@ from Modules.Values.Assets import *
 class Boss(Object):
     def __init__(self, size, move_position, position=(0,0), speed=3):
         self.size = size
-        self.lives = 12
+        self.lives = 5
         self.move_position = move_position
         self.animations = self.set_animations()
         self.state = "Left"
@@ -16,17 +16,14 @@ class Boss(Object):
         self.dead = False
         self.set_speed(speed)
         self.time_last = 0
-
-        #######################
         self.flag_shot = False
         self.time_last_shot = 0
-        self.list_projectile = []  
-        #######################
+        self.list_projectiles = []  
         super().__init__(size, position, self.current_animation[self.step_counter]) 
 
-    def update(self, screen, time_remaining):
+    def update(self, screen):
         super().update()
-        self.move_boss(time_remaining)
+        self.move_boss()
         self.animation(screen)
         self.update_projectile(screen)
 
@@ -38,22 +35,23 @@ class Boss(Object):
             x = self.rect_main.right - margin
 
         if x is not None:
-            self.list_projectile.append(Projectile((50, 50), self.state, (x, y),"Two"))
+            self.list_projectiles.append(Projectile((50, 50), self.state, (x, y),"Two"))
+            self.sound_effects(FIRE_SOUND, 0.1)
 
     def update_projectile(self, screen: py.Surface):
         indice = 0
-        while indice < len(self.list_projectile):
-            projectile = self.list_projectile[indice]
+        while indice < len(self.list_projectiles):
+            projectile = self.list_projectiles[indice]
             screen.blit(projectile.image, projectile.rect_main)
             projectile.update()
+            
             if projectile.rect_main.centerx < 0 or projectile.rect_main.centerx > screen.get_width():
-                self.list_projectile.pop(indice)
+                self.list_projectiles.pop(indice)
                 indice -= 1
             indice +=1
 
     
-    def move_boss(self, time_remaining): #poner el super().move
-        # time = py.time.get_ticks()
+    def move_boss(self): 
         if self.state == "Left":
             self.current_animation = self.animations[self.state]
             super().move_left()                        
@@ -74,13 +72,9 @@ class Boss(Object):
         if not self.flag_shot:
             time_shot = py.time.get_ticks()
             if time_shot - self.time_last_shot >= 2000:
+               
                 self.shot_projectile() 
-                # Efecto de sonido fuego
                 self.time_last_shot = time_shot
-
-
-
-
 
     def set_animations(self):
         boss_walk_right = []
