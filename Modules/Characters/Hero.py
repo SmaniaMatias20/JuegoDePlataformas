@@ -1,4 +1,5 @@
 import pygame as py
+from Modules.Characters.Boss import Boss
 from Modules.Characters.Enemy import Enemy
 from Modules.Characters.FallingObject import FallingObject
 from Modules.Characters.Item import Item
@@ -33,7 +34,8 @@ class Hero(Object):
         self.set_speed(speed)
         super().__init__(size, position, self.current_animation[self.step_counter]) 
 
-    def update(self, screen, pressed_keys, platforms, items, enemys, traps, stones):
+    def update(self, screen, pressed_keys, platforms, items, enemys, traps, stones, boss):
+        super().update()
         self.show_lives(screen)
         self.move_hero(screen, pressed_keys)
         self.update_projectile(screen)
@@ -42,6 +44,7 @@ class Hero(Object):
         self.collide_with_traps(traps)
         self.collide_with_falling_objects(stones)
         self.collide_with_items(items)
+        self.collide_with_boss(boss)
         
     
     def move_hero(self, screen: py.Surface, pressed_keys):
@@ -53,27 +56,27 @@ class Hero(Object):
                 self.animation(screen)
             case "Right":
                 self.current_animation = self.animations[self.state]
-                self.animation(screen)
                 self.move_right(screen.get_width()) 
+                self.animation(screen)
                 self.flag_shot = True
             case "Left":
                 self.current_animation = self.animations[self.state]
-                self.animation(screen)
                 self.move_left(0) 
+                self.animation(screen)
                 self.flag_shot = True
             case "Up": 
                 if not self.jump: 
                     self.jump = True
                     self.move_y = self.jump_power
                     self.current_animation = self.animations[self.state]
-                    self.animation(screen)
                     self.move_up(0)
+                    self.animation(screen)
 
         if self.flag_shot and pressed_keys[py.K_f]:
             time = py.time.get_ticks()
-            if time - self.time_last_shot >= 1000:
+            if time - self.time_last_shot >= 1000:   # Puedo disparar mas rapido
                 self.shot_projectile() 
-                self.shot_projectile_effects()
+                self.sound_effects(PROJECTILE_SOUND, 0.2)
                 self.flag_shot = False
                 self.time_last_shot = time
      
@@ -90,8 +93,7 @@ class Hero(Object):
             screen.blit(two_live, [5, 20])
         elif self.lives == 1:
             screen.blit(one_live, [5, 20])
-        else:
-            print("Fin del juego")
+
 
     def shot_projectile(self):
         x = None
@@ -134,7 +136,7 @@ class Hero(Object):
         hero_quiet = []
         hero_walk_right = []
         hero_jump = []  
-        list_path = [HERO_WALK_RIGHT_A, HERO_WALK_RIGHT_B, HERO_WALK_RIGHT_C, HERO_WALK_RIGHT_D, HERO_WALK_RIGHT_E]
+        list_path = [HERO_WALK_RIGHT_A,HERO_WALK_RIGHT_A,HERO_WALK_RIGHT_B,HERO_WALK_RIGHT_B,HERO_WALK_RIGHT_C,HERO_WALK_RIGHT_C,HERO_WALK_RIGHT_D,HERO_WALK_RIGHT_D,HERO_WALK_RIGHT_E,HERO_WALK_RIGHT_E]
 
         for path in list_path:
             image_hero_walk_right = self.load_image(path, self.size) 
@@ -205,8 +207,13 @@ class Hero(Object):
                 break
             else:
                 self.jump = True
+
+    def collide_with_boss(self, boss: Boss):
         
-        self.all_rects()
+        if self.rect_main.colliderect(boss.rect_main):
+            self.lives -= 1 
+            self.rect_main.x = 0
+            self.rect_main.y = 400 
 
     def collide_with_items(self, items:list['Item']):
         indice = 0
@@ -215,20 +222,25 @@ class Hero(Object):
                 if items[indice].type == "Coin":
                     self.points += 10
                     items.pop(indice)
-                    self.collide_coin_effects()
+                    self.sound_effects(COIN_SOUND, 0.2)
+                    indice -= 1
+                elif items[indice].type == "Gem":
+                    self.points += 100
+                    items.pop(indice)
+                    self.sound_effects(GEM_SOUND, 0.3) # Cambiar por sonido de gema
                     indice -= 1
                 else:
                     self.points += 50
                     items.pop(indice)
                     indice -= 1
                     self.level_complete = True
-                    # print("Fin del Nivel") # Retornar algo para finalizar el nivel
             indice +=1
     
     def collide_with_traps(self, traps:list['Trap']):
         indice = 0
         while indice < len(traps):
             if self.rect_main.colliderect(traps[indice].rect_main):
+                self.sound_effects(TRAP_SOUND, 0.3)
                 self.lives -= 1
                 self.rect_main.x = 0
                 self.rect_main.y = 400
@@ -240,14 +252,14 @@ class Hero(Object):
         while indice < len(objects):
             if self.rect_main.colliderect(objects[indice].rect_main):
                 if objects[indice].type == "Stone":
-                    self.bang_effects()
+                    self.sound_effects(BANG_SOUND, 0.1)
                     self.lives -= 1
                     self.rect_main.x = 0
                     self.rect_main.y = 400
                     objects.pop(indice)
                     indice -= 1
                 elif objects[indice].type == "Star":
-                    self.collide_star_effects()
+                    self.sound_effects(STAR_SOUND, 0.2)
                     self.lives += 1
                     objects.pop(indice)
                     indice -= 1
@@ -258,6 +270,7 @@ class Hero(Object):
         indice = 0
         while indice < len(enemys):
             if self.rect_main.colliderect(enemys[indice].rect_main):
+                #Efecto de sonido de grito
                 self.lives -= 1
                 self.rect_main.x = 0
                 self.rect_main.y = 400
@@ -270,31 +283,13 @@ class Hero(Object):
         for projectile in self.list_projectile:
             for enemy in enemys:
                 if projectile.rect_main.colliderect(enemy.rect_main):
-                    self.bang_effects()
+                    self.sound_effects(BANG_SOUND, 0.1)
                     self.list_projectile.remove(projectile)
                     self.points += 50
                     enemys.remove(enemy)
                     del enemy
 
-
-    # Verificar con el set_music()
-    def collide_coin_effects(self):
-        music = py.mixer.Sound(COIN_SOUND)
-        music.set_volume(0.2)
+    def sound_effects(self, path, volume):
+        music = py.mixer.Sound(path)
+        music.set_volume(volume)
         music.play()
-
-    def shot_projectile_effects(self):
-        music = py.mixer.Sound(PROJECTILE_SOUND)
-        music.set_volume(0.2)
-        music.play()
-
-    def bang_effects(self):
-        music = py.mixer.Sound(BANG_SOUND)
-        music.set_volume(0.1)
-        music.play()
-    
-    def collide_star_effects(self):
-        music = py.mixer.Sound(STAR_SOUND)
-        music.set_volume(0.2)
-        music.play()
-

@@ -73,7 +73,7 @@ class FormMenuPause(Form):
                             onclick_param= "",
                             path_image= "Modules\Assets\Images\Menu\sound.png")
         
-        self._btn_pause = Button_Image(screen = self._slave, 
+        self._btn_unpause = Button_Image(screen = self._slave, 
                         master_x = self._x,
                         master_y= self._y,
                         x = self._w - 300,
@@ -87,11 +87,22 @@ class FormMenuPause(Form):
                         font = "Arial Black",
                         font_size = 25) 
         
+        self._btn_home = Button_Image(screen = self._slave, 
+                        master_x = self._x,
+                        master_y= self._y,
+                        x = self._w - 50,
+                        y = self._h - 50,
+                        w = 30,
+                        h = 30,
+                        onclick = self.btn_home_click,
+                        onclick_param = "",
+                        path_image = "Modules\Assets\Images\Menu\home.png") 
+        
         # self.lista_widgets.append(self.label_volumen)
         # self.lista_widgets.append(self.slider_volumen)
-        # self.lista_widgets.append(self.btn_play_music)
+        self.lista_widgets.append(self._btn_home)
         self.lista_widgets.append(self._btn_sound)
-        self.lista_widgets.append(self._btn_pause)
+        self.lista_widgets.append(self._btn_unpause)
     
     def render(self):
         self._slave.fill(self._color_background)
@@ -124,4 +135,8 @@ class FormMenuPause(Form):
     def btn_unpause_click(self, param):
         self.level.resume_game()
 
+        self.end_dialog()
+    
+    def btn_home_click(self, param):
+        del self.level
         self.end_dialog()

@@ -47,7 +47,7 @@ class FormMenuOptions(Form):
                                             15, 
                                             self.volumen, 
                                             EColors.WHITE.value, 
-                                            EColors.GOLDEN.value)
+                                            EColors.BLUE.value)
         
         porcentaje_volumen = f"{self.volumen * 100}%"
         self.label_volumen = Label(self._slave, 

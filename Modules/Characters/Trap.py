@@ -11,3 +11,10 @@ class Trap(Object):
             super().__init__(size, position, TRAP_ONE)
         elif type == "Two":
             super().__init__(size, position, TRAP_TWO)
+    
+    def update(self, screen, traps):
+        self.blit_traps(screen, traps)
+
+    def blit_traps(self, screen, traps):
+        for trap in traps:
+            trap.blit(screen)

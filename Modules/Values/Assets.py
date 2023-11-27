@@ -37,6 +37,7 @@ THREE_LIVE = os.path.join('Modules','Assets', 'Images', 'Hero', '3-3.png')
 COIN = os.path.join('Modules','Assets', 'Images', 'Item', 'coin.png')
 CROWN = os.path.join('Modules','Assets', 'Images', 'Item', 'crown.png')
 STAR = os.path.join('Modules','Assets', 'Images', 'Item', 'star.png')
+GEM = os.path.join('Modules','Assets', 'Images', 'Item', 'gem.png') 
 
 # ENEMY
 ENEMY_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Enemy', 'enemy-1.png')
@@ -60,7 +61,27 @@ COIN_SOUND = os.path.join('Modules','Assets', 'Music', 'coin.mp3')
 ZOMBIE_SOUND = os.path.join('Modules','Assets', 'Music', 'zombie.mp3')  
 PROJECTILE_SOUND = os.path.join('Modules','Assets', 'Music', 'projectile.mp3')  
 BANG_SOUND = os.path.join('Modules','Assets', 'Music', 'bang.mp3')  
-STAR_SOUND = os.path.join('Modules','Assets', 'Music', 'star.mp3')  
+STAR_SOUND = os.path.join('Modules','Assets', 'Music', 'star.mp3') 
+TRAP_SOUND = os.path.join('Modules','Assets', 'Music', 'trap.mp3') 
+GEM_SOUND = os.path.join('Modules','Assets', 'Music', 'gem.mp3')  
+
+
+# BOSS
+BOSS_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-1.png')
+BOSS_WALK_RIGHT_B = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-2.png')
+BOSS_WALK_RIGHT_C = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-3.png')
+BOSS_WALK_RIGHT_D = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-4.png')
+BOSS_WALK_RIGHT_E = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-5.png')
+BOSS_WALK_RIGHT_F = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-6.png')
+BOSS_WALK_RIGHT_G = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-7.png')
+BOSS_WALK_RIGHT_H = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-8.png')
+BOSS_WALK_RIGHT_I = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-9.png')
+
+BOSS_QUIET_A = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-quiet-1.png')
+BOSS_QUIET_B = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-quiet-2.png')
+BOSS_QUIET_C = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-quiet-3.png')
+FIRE = os.path.join('Modules','Assets', 'Images', 'Boss', 'fire.png')
+
 
 
 

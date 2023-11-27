@@ -32,9 +32,21 @@ class FormContainerLevel(Form):
                         onclick_param = "",
                         path_image = "Modules\Assets\Images\Menu\pause.png") 
         
+        self._btn_sound = Button_Image(screen = self._slave, 
+                        master_x = self._x,
+                        master_y= self._y,
+                        x = self._w - 170,
+                        y = self._h - 40,
+                        w = 30,
+                        h = 30,
+                        onclick = self.btn_pause_click,
+                        onclick_param = "",
+                        path_image = "Modules\Assets\Images\Menu\sound.png") 
+        
         self.lista_widgets.append(self.level)
         self.lista_widgets.append(self._btn_home)
         self.lista_widgets.append(self._btn_pause)
+        self.lista_widgets.append(self._btn_sound)
 
     def render(self):
         self._slave.fill(self._color_background)
@@ -54,9 +66,6 @@ class FormContainerLevel(Form):
             insert_player_data("Modules\Data\scores.db", self.level.hero.name, self.level.hero.points, self.level.type)
             del self.level
             self.end_dialog()
-
-
-
 
     def btn_home_click(self, param):
         del self.level

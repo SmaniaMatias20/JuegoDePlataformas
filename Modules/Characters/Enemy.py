@@ -1,6 +1,5 @@
 from Modules.Characters.Platform import *
 from Modules.Characters.Object import Object
-from Modules.Characters.Platform import Platform
 from Modules.Values.Assets import *
 
 
@@ -17,29 +16,28 @@ class Enemy(Object):
         super().__init__(size, position, self.current_animation[self.step_counter]) 
 
     def update(self, screen):
-        self.move_enemy(screen)
+        super().update()
+        self.move_enemy()
         self.animation(screen)
         
     
-    def move_enemy(self, screen: py.Surface):
+    def move_enemy(self):
         if self.state == "Left":
             self.current_animation = self.animations[self.state]
-            self.rect_main.x -= self.speed
-            if self.rect_main.x < self.move_position[0]: # Hasta que posision se va a mover cada enemigo
+            super().move_left()
+            if self.rect_main.x < self.move_position[0]: 
                 self.state = "Right"
         elif self.state == "Right":
             self.current_animation = self.animations[self.state]
-            self.rect_main.x += self.speed
+            super().move_right()
             if self.rect_main.x + 30 > self.move_position[1]:
-                self.state = "Left" 
+                self.state = "Left"   
 
-            
-        self.all_rects()
 
     def set_animations(self):
         enemy_walk_right = []
-        list_path = [ENEMY_WALK_RIGHT_A, ENEMY_WALK_RIGHT_B, ENEMY_WALK_RIGHT_C, ENEMY_WALK_RIGHT_D, ENEMY_WALK_RIGHT_E, ENEMY_WALK_RIGHT_F, ENEMY_WALK_RIGHT_G, ENEMY_WALK_RIGHT_H]
-        
+        list_path = [ENEMY_WALK_RIGHT_A,ENEMY_WALK_RIGHT_A,ENEMY_WALK_RIGHT_B,ENEMY_WALK_RIGHT_B,ENEMY_WALK_RIGHT_C,ENEMY_WALK_RIGHT_C, ENEMY_WALK_RIGHT_D,ENEMY_WALK_RIGHT_D,ENEMY_WALK_RIGHT_E,ENEMY_WALK_RIGHT_E,ENEMY_WALK_RIGHT_F,ENEMY_WALK_RIGHT_F,ENEMY_WALK_RIGHT_G,ENEMY_WALK_RIGHT_G,ENEMY_WALK_RIGHT_H,ENEMY_WALK_RIGHT_H]
+
         for path in list_path:
             image_enemy_walk_right = self.load_image(path, self.size) 
             enemy_walk_right.append(image_enemy_walk_right)
@@ -58,10 +56,7 @@ class Enemy(Object):
         screen.blit(self.current_animation[self.step_counter], self.rect_main)
         self.step_counter += 1
 
-    def sound_effects(self):
-        music = py.mixer.Sound(ZOMBIE_SOUND)
-        music.set_volume(0.2)
-        music.play()
+
             
 
         

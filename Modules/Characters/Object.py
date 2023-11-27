@@ -14,13 +14,15 @@ class Object:
             self.image = self.load_image(image, size_surface)
 
         self.rect_main = self.image.get_rect()
-
         self.rect_main.x = position[0]
         self.rect_main.y = position[1]
         self.rect = self.get_rectangles(self.rect_main)
-
         self.direction = EOrientation.IDLE
     
+    def update(self):
+        self.all_rects()
+
+
     def get_rectangles(self, main:py.Rect):
         dictionary = {}
         if len(main) > 0 and isinstance(main, py.Rect):
@@ -41,11 +43,6 @@ class Object:
         self.rect["left"].x = self.rect["main"].x
         self.rect["top"].x = self.rect["main"].x
 
-    def load_image(self, path, size_surface):
-        image = py.image.load(path)
-        image = py.transform.scale(image, size_surface)
-
-        return image
     
     def set_speed(self, speed):
         self.speed = speed
@@ -97,3 +94,9 @@ class Object:
    
     def blit(self, screen):
         screen.blit(self.image, self.rect_main)
+
+    def load_image(self, path, size_surface):
+        image = py.image.load(path)
+        image = py.transform.scale(image, size_surface)
+
+        return image

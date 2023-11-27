@@ -26,7 +26,7 @@ class Game(LevelConfig):
             if self.form_main.exit:
                 self.running = False
 
-            self.screen.fill(EColors.GOLDEN.value)
+            self.screen.fill(EColors.DARK_GOLDENROD.value)
 
             self.form_main.update(events)
             

@@ -10,8 +10,6 @@ from Modules.Values.Assets import *
 from Modules.Values.EColors import *
 from Modules.Levels.LevelOne import *
 
-
-
 class LevelTwo(LevelConfig):
     def __init__(self, size):
         super().__init__(size)
@@ -27,13 +25,20 @@ class LevelTwo(LevelConfig):
 
     def update(self, list_events):
         super().update(list_events)
-        self.blit_platforms()
-        self.blit_items()
-        self.blit_traps()
-        self.blit_falling_objects()
+
+        for platform in self.platforms:
+            platform.update(self.screen, self.platforms)
+
+        for item in self.items:
+            item.update(self.screen, self.items)
+
+        for trap in self.traps:
+            trap.update(self.screen, self.traps)
+
         for enemy in self.enemys:
             enemy.update(self.screen)
 
+        self.blit_falling_objects()
         self.hero.update(self.screen, self.pressed_keys, self.platforms, self.items, self.enemys, self.traps, self.falling_objects)
         self.show_score(f"{self.hero.points}")
         self.draw_hitbox()
@@ -59,24 +64,12 @@ class LevelTwo(LevelConfig):
         x = self.size[0] * 0
         y = self.size[1] - 105
 
-        self.hero = Hero((50, 50), (x, y), 7)
+        self.hero = Hero((50, 50), (x, y), 5)
 
     def blit_falling_objects(self):
         for fo in self.falling_objects:
             fo.move_down()
             fo.blit(self.screen)
-
-    def blit_platforms(self):
-        for platform in self.platforms:
-            platform.blit(self.screen)
-    
-    def blit_items(self):
-        for item in self.items:
-            item.blit(self.screen)
-    
-    def blit_traps(self):
-        for trap in self.traps:
-            trap.blit(self.screen)
 
     def create_list_platforms(self):
         list = []
@@ -99,10 +92,10 @@ class LevelTwo(LevelConfig):
     def create_list_enemys(self):
         list = []
 
-        enemy = Enemy((40, 50), (350, 550), (350, 397), 2)
-        enemy_b = Enemy((40, 50), (300, 450), (300, 277), 2)
-        enemy_c = Enemy((40, 50), (500, 660), (500, 150), 2)
-        enemy_d = Enemy((40, 50), (60, 150), (60, 150), 2)
+        enemy = Enemy((40, 50), (250, 520), (350, 397), 3)
+        enemy_b = Enemy((40, 50), (250, 475), (300, 277), 3)
+        enemy_c = Enemy((40, 50), (500, 660), (500, 150), 3)
+        enemy_d = Enemy((40, 50), (60, 150), (60, 150), 3)
     
         list.append(enemy)
         list.append(enemy_b)
@@ -128,10 +121,12 @@ class LevelTwo(LevelConfig):
             list.append(coin_d)
             list.append(coin_e)
         
-        crown = Item((50, 50), (735, 380), "Crown")
+        crown = Item((50, 40), (735, 380), "Crown")
+        gem = Item((30, 30), (580, 100), "Gem")
         
 
         list.append(crown)
+        list.append(gem)
 
         return list
     
@@ -139,13 +134,15 @@ class LevelTwo(LevelConfig):
         list = []
 
         trap = Trap((60, 20), (170, 180), "One")
-        trap_b = Trap((60, 20), (600, 425), "One")
-        trap_c = Trap((60, 20), (660, 425), "One")
+        trap_b = Trap((60, 20), (540, 425), "One")
+        trap_c = Trap((60, 20), (600, 425), "One")
+        trap_d = Trap((60, 20), (660, 425), "One")
  
 
         list.append(trap)
         list.append(trap_b)
         list.append(trap_c)
+        list.append(trap_d)
 
         return list
     

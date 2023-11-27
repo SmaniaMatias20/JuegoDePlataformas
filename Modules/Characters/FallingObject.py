@@ -8,19 +8,26 @@ class FallingObject(Object):
         self.type = type
 
         if self.type == "Stone":
-            super().__init__(size_surface, position, STONE)
+            path = STONE
+            # super().__init__(size_surface, position, STONE)
         elif self.type == "Star":
-            super().__init__(size_surface, position, STAR)
+            path = STAR
+            # super().__init__(size_surface, position, STAR)
+        
+        super().__init__(size_surface, position, path)
 
         self.set_random_position()
         speed = random.randrange(3, 7)
         self.set_speed(speed)
+
 
     def move_down(self):
         if self.rect_main.y > 500:
             self.set_random_position()
         else:
             super().move_down()
+            
+        self.all_rects()
 
     def set_random_position(self):        
         self.rect_main.x = random.randrange(self.rect_main.width, 800 - self.rect_main.width)

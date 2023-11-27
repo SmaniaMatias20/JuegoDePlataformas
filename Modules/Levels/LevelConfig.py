@@ -1,4 +1,3 @@
-from Modules.Values.EColors import EColors
 from Modules.Values.Assets import *
 from Modules.Values.EColors import *
 from Modules.Characters.Hero import *
@@ -13,7 +12,7 @@ class LevelConfig:
         self.screen = py.display.set_mode(self.size)
         self.running = True
         self.DEBUG = False
-        self.set_fps(30)
+        self.set_fps(25)
         self.clock = py.time.Clock()
         self.set_caption("Juego Segundo Parcial")
         self.set_icon(GAME_ICON)
@@ -41,9 +40,23 @@ class LevelConfig:
             for key in self.hero.rect:
                     py.draw.rect(self.screen, EColors.GREEN.value, self.hero.rect[key], 3)
             
+            
+            for trap in self.traps:
+                for key in trap.rect:
+                    py.draw.rect(self.screen, EColors.DARK_ORANGE.value, trap.rect[key], 3)
+            
+            for item in self.items:
+                for key in item.rect:
+                    py.draw.rect(self.screen, EColors.DARK_VIOLET.value, item.rect[key], 3)
+            
             for enemy in self.enemys:
                 for key in enemy.rect:
-                    py.draw.rect(self.screen, EColors.CYAN.value, enemy.rect[key], 3)
+                    py.draw.rect(self.screen, EColors.LIGHT_CYAN.value, enemy.rect[key], 3)
+
+            for fo in self.falling_objects:
+                for key in fo.rect:
+                    py.draw.rect(self.screen, EColors.PINK.value, fo.rect[key], 3)
+
 
         
     def get_pressed(self):
