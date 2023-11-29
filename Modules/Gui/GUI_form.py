@@ -1,12 +1,14 @@
-import pygame
+import pygame 
 from pygame.locals import *
-
 from Modules.Gui.GUI_widget import Widget
+
 
 
 #No se instancia. Es la base de la jerarquia
 class Form(Widget):
     def __init__(self, screen, x,y,w,h,color_background,color_border = "Black", border_size = -1, active = True):
+        
+
         super().__init__(screen, x,y,w,h, color_background, color_border, border_size)
         self._slave = pygame.Surface((w,h))
         self.slave_rect = self._slave.get_rect()
@@ -17,7 +19,32 @@ class Form(Widget):
         self.hijo = None
         self.dialog_result = None
         self.padre = None
+
     
+    ################################################
+    # def set_music(self, music):
+    #     self.music = pygame.mixer.Sound(music)
+    #     # self.music.set_volume(0.1)
+    #     self.play_music()
+    
+    # def set_volume(self, volume):
+    #     self.music.set_volume(volume)
+
+    # def play_music(self):
+    #     self.music.play()
+
+    # def stop_music(self):
+    #     self.music.stop()
+    ################################################
+
+
+
+
+
+
+
+
+
     def show_dialog(self, formulario):
         self.hijo = formulario
         self.hijo.padre = self

@@ -24,6 +24,7 @@ class LevelThree(LevelConfig):
         self.set_falling_objects()  
         self.set_boss()
         self.pressed_keys = []
+        self.set_music(BACKGROUND_SOUND)
 
     def update(self, list_events):
         super().update(list_events)
@@ -97,8 +98,7 @@ class LevelThree(LevelConfig):
         list.append(platform_d)
         list.append(platform_e)
         list.append(platform_f)
-  
-        
+   
         return list
     
     def create_list_enemys(self):
@@ -108,11 +108,9 @@ class LevelThree(LevelConfig):
         enemy_b = Enemy((40, 50), (10, 180), (10, 279), 4)
         enemy_c = Enemy((40, 50), (550, 730), (700, 397), 4)
 
-    
         list.append(enemy)
         list.append(enemy_b)
         list.append(enemy_c)
-
 
         return list
 
@@ -154,15 +152,9 @@ class LevelThree(LevelConfig):
     
     def create_list_traps(self):
         list = []
-
-        # trap = Trap((60, 20), (170, 180), "One")
-        # trap_b = Trap((60, 20), (500, 425), "One")
         trap_c = Trap((160, 50), (400, 475), "One")
         trap_d = Trap((160, 50), (240, 475), "One")
- 
 
-        # list.append(trap)
-        # list.append(trap_b)
         list.append(trap_c)
         list.append(trap_d)
 
@@ -181,3 +173,9 @@ class LevelThree(LevelConfig):
             list.append(star)
 
         return list
+    
+    def draw_hitbox(self):
+        super().draw_hitbox()
+        if self.get_mode():
+            for key in self.boss.rect:
+                py.draw.rect(self.screen, EColors.CHARTREUSE.value, self.boss.rect[key], 3)

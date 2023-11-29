@@ -5,10 +5,12 @@ from Modules.Gui.GUI_form_menu_pause import FormMenuPause
 from Modules.Values.EColors import *
 
 class FormContainerLevel(Form):
-    def __init__(self, screen: pygame.Surface, level):
+    def __init__(self, screen: pygame.Surface, level, name):
         super().__init__(screen, 0, 0, screen.get_width(), screen.get_height(), color_background = EColors.ALICE_BLUE.value)
         level.screen = self._slave
         self.level = level
+        self.flag_music_play = True
+        self.player_name = name
 
         self._btn_home = Button_Image(screen = self._slave, 
                         master_x = self._x,
@@ -39,7 +41,7 @@ class FormContainerLevel(Form):
                         y = self._h - 40,
                         w = 30,
                         h = 30,
-                        onclick = self.btn_pause_click,
+                        onclick = self.btn_sound_click,
                         onclick_param = "",
                         path_image = "Modules\Assets\Images\Menu\sound.png") 
         
@@ -59,26 +61,38 @@ class FormContainerLevel(Form):
                     self.render()
                     for widget in self.lista_widgets:
                         widget.update(events)
-                    # self.update_volumen(lista_eventos)   
             else:
                 self.hijo.update(events)
         else:
-            insert_player_data("Modules\Data\scores.db", self.level.hero.name, self.level.hero.points, self.level.type)
+            self.level.stop_music()
+            insert_player_data("Modules\Data\scores.db", self.player_name, self.level.hero.points, self.level.type)
             del self.level
             self.end_dialog()
 
     def btn_home_click(self, param):
+        self.level.stop_music()
         del self.level
         self.end_dialog()
     
+    def btn_sound_click(self, param):
+        if self.flag_music_play:
+            self.level.stop_music()
+        else:
+            self.level.play_music()
+        
+        self.flag_music_play = not self.flag_music_play
+
+
+
     def btn_pause_click(self, param):
         self.level.pause_game()
+        self.level.stop_music()
 
         menu_pause = FormMenuPause(self._master, 
         x= 200, 
-        y= 25, 
+        y= 100, 
         w= 400, 
-        h= 400, 
+        h= 300, 
         color_background = EColors.WHITE.value, 
         color_border = EColors.WHITE.value, 
         active = True,

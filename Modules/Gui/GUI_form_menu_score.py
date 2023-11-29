@@ -19,13 +19,13 @@ class FormMenuScore(Form):
         self._margen_y = margen_y
         #Creo 2 labels y los agrego a la lista de widgets
         self.lista_widgets.append(
-            Label(screen=self._slave, x=margen_x+10,y=20,w=w/2-margen_x-10,h=50,text = "Players", font="Verdana",font_size=30,font_color=EColors.BLACK.value,path_image="Modules\Assets\Images\Menu\\table.png"))
+            Label(screen=self._slave, x=margen_x+10,y=20,w=w/2-margen_x-10,h=50,text = "Players", font="Arial Black",font_size=30,font_color=EColors.BLACK.value,path_image="Modules\Assets\Images\Menu\\table.png"))
         self.lista_widgets.append(
             Label(screen=self._slave,
                  x=margen_x+10+w/2-margen_x-10,
                  y=20,w=w/2-margen_x-10,
                  h=50,text = "Score",
-                font="Verdana",
+                font="Arial Black",
                 font_size=30,
                 font_color= EColors.BLACK.value,
                 path_image="Modules\Assets\Images\Menu\\table.png"))
@@ -41,7 +41,7 @@ class FormMenuScore(Form):
                 cadena = "" 
                 cadena = f"{s}"
                 pos = Label(screen=self._slave, x=pos_inicial_x,y=pos_inicial_y,
-                            w=w/2-margen_x,h=100,text = cadena, font="Verdana",font_size=30,
+                            w=w/2-margen_x,h=100,text = cadena, font="Arial Black",font_size=30,
                             font_color=EColors.BLACK.value, path_image="Modules\Assets\Images\Menu\\table.png")
                 self.lista_widgets.append(pos)
                 pos_inicial_x += w/2-margen_x

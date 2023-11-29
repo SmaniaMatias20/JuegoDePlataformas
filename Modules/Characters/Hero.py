@@ -14,7 +14,7 @@ from Modules.Characters.Platform import *
 class Hero(Object):
 
     def __init__(self, size, position=(0,0), speed=3) -> None:
-        self.name = "Matias"
+        self.name = ""
         self.size = size
         self.animations = self.set_animations()
         self.state = "Quiet"
@@ -74,7 +74,7 @@ class Hero(Object):
 
         if self.flag_shot and pressed_keys[py.K_f]:
             time = py.time.get_ticks()
-            if time - self.time_last_shot >= 1000:   # Puedo disparar mas rapido
+            if time - self.time_last_shot >= 1000:   
                 self.shot_projectile() 
                 self.sound_effects(PROJECTILE_SOUND, 0.2)
                 self.flag_shot = False
@@ -102,7 +102,7 @@ class Hero(Object):
         if self.state == "Right":
             x = self.rect_main.right - margin
         elif self.state == "Left":
-            x = self.rect_main.left - 100 + margin
+            x = self.rect_main.left - 50 + margin 
 
         if x is not None:
             self.list_projectile.append(Projectile((30, 10), self.state, (x, y)))
@@ -259,7 +259,7 @@ class Hero(Object):
     def collide_with_falling_objects(self, objects:list['FallingObject']):
         indice = 0
         while indice < len(objects):
-            if self.rect_main.colliderect(objects[indice].rect_main):
+            if self.rect["top"].colliderect(objects[indice].rect_main):
                 if objects[indice].type == "Stone":
                     self.sound_effects(BANG_SOUND, 0.1)
                     self.lives -= 1
@@ -279,7 +279,6 @@ class Hero(Object):
         indice = 0
         while indice < len(enemys):
             if self.rect_main.colliderect(enemys[indice].rect_main):
-                #Efecto de sonido de grito
                 self.lives -= 1
                 self.rect_main.x = 0
                 self.rect_main.y = 400
@@ -304,6 +303,8 @@ class Hero(Object):
                 self.sound_effects(BANG_SOUND, 0.1)
                 self.list_projectile.remove(projectile)
                 boss.lives -= 1
+                if boss.lives == 0:
+                    self.points += 300
 
 
 

@@ -1,5 +1,5 @@
-import os
 import pygame as py
+import os
 
 def rescale_images(animations: dict, widht: int, high: int):
     for key in animations:
@@ -56,15 +56,6 @@ TRAP_TWO = os.path.join('Modules','Assets', 'Images', 'Trap', 'trap-1.png')
 # FALLING OBJECTS
 STONE = os.path.join('Modules','Assets', 'Images', 'Falling', 'stone.png')  
 
-# SOUND
-COIN_SOUND = os.path.join('Modules','Assets', 'Music', 'coin.mp3')  
-ZOMBIE_SOUND = os.path.join('Modules','Assets', 'Music', 'zombie.mp3')  
-PROJECTILE_SOUND = os.path.join('Modules','Assets', 'Music', 'projectile.mp3')  
-BANG_SOUND = os.path.join('Modules','Assets', 'Music', 'bang.mp3')  
-STAR_SOUND = os.path.join('Modules','Assets', 'Music', 'star.mp3') 
-TRAP_SOUND = os.path.join('Modules','Assets', 'Music', 'trap.mp3') 
-GEM_SOUND = os.path.join('Modules','Assets', 'Music', 'gem.mp3')  
-FIRE_SOUND = os.path.join('Modules','Assets', 'Music', 'fire.mp3')   
 
 # BOSS
 BOSS_WALK_RIGHT_A = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-1.png')
@@ -82,6 +73,16 @@ BOSS_QUIET_B = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-quiet-2.
 BOSS_QUIET_C = os.path.join('Modules','Assets', 'Images', 'Boss', 'boss-quiet-3.png')
 FIRE = os.path.join('Modules','Assets', 'Images', 'Boss', 'fire.png')
 
+# SOUND
+COIN_SOUND = os.path.join('Modules','Assets', 'Music', 'coin.mp3')  
+ZOMBIE_SOUND = os.path.join('Modules','Assets', 'Music', 'zombie.mp3')  
+PROJECTILE_SOUND = os.path.join('Modules','Assets', 'Music', 'projectile.mp3')  
+BANG_SOUND = os.path.join('Modules','Assets', 'Music', 'bang.mp3')  
+STAR_SOUND = os.path.join('Modules','Assets', 'Music', 'star.mp3') 
+TRAP_SOUND = os.path.join('Modules','Assets', 'Music', 'trap.mp3') 
+GEM_SOUND = os.path.join('Modules','Assets', 'Music', 'gem.mp3')  
+FIRE_SOUND = os.path.join('Modules','Assets', 'Music', 'fire.mp3')   
+BACKGROUND_SOUND = os.path.join('Modules','Assets', 'Music', 'background.mp3')  
 
 
 

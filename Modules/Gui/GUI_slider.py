@@ -20,7 +20,7 @@ class Slider(Widget):
         self.slave_rect_collide.x += master_x
         self.slave_rect_collide.y += master_y
 
-        w_circulo = w / 20
+        w_circulo = w / 20 
         h_circulo = h * 2.5
         self.rectangulo_circulo = pygame.Rect(0, 0, w_circulo, h_circulo)
         self.rectangulo_circulo.center = (x + w * value, self.slave_rect.centery)

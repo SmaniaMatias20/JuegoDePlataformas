@@ -1,11 +1,14 @@
 from Modules.Values.Assets import *
 from Modules.Values.EColors import *
 from Modules.Characters.Hero import *
+
 import pygame as py
 
 class LevelConfig:
     
     def __init__(self, size):
+        py.mixer.init()
+
         self.complete = False
         self.pause = False
         self.size = size
@@ -20,6 +23,7 @@ class LevelConfig:
         self.start_time = py.time.get_ticks()
         self.time_remaining = 180
         
+        
 
     def update(self, list_events):
         for event in list_events:
@@ -28,7 +32,7 @@ class LevelConfig:
                     self.change_mode()
         self.get_pressed()
         self.fill_screen()
-        # self.set_music()
+        
 
     def draw_hitbox(self):
         if self.get_mode():
@@ -39,7 +43,6 @@ class LevelConfig:
 
             for key in self.hero.rect:
                     py.draw.rect(self.screen, EColors.GREEN.value, self.hero.rect[key], 3)
-            
             
             for trap in self.traps:
                 for key in trap.rect:
@@ -56,6 +59,11 @@ class LevelConfig:
             for fo in self.falling_objects:
                 for key in fo.rect:
                     py.draw.rect(self.screen, EColors.PINK.value, fo.rect[key], 3)
+            
+            for projectile in self.hero.list_projectile:
+                for key in projectile.rect:
+                    py.draw.rect(self.screen, EColors.YELLOW.value, projectile.rect[key], 3)
+
 
 
         
@@ -79,7 +87,7 @@ class LevelConfig:
 
     def set_music(self, music):
         self.music = py.mixer.Sound(music)
-        self.music.set_volume(0.2)
+        self.music.set_volume(0.1)
         self.play_music()
         
     def set_volume(self, volume):

@@ -22,6 +22,7 @@ class LevelTwo(LevelConfig):
         self.set_traps()
         self.set_falling_objects()  
         self.pressed_keys = []
+        self.set_music(BACKGROUND_SOUND)
 
     def update(self, list_events):
         super().update(list_events)

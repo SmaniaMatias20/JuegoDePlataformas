@@ -1,19 +1,23 @@
 from Modules.Levels.LevelConfig import LevelConfig
 from Modules.Gui.GUI_form_main import FormMain
+from Modules.Values.Assets import *
 from Modules.Values.EColors import *
 from pygame.locals import *
 import pygame as py
+from pygame import mixer
 import sys
 
 class Game(LevelConfig):
     def __init__(self, size):
         super().__init__(size)
         self.screen
+        self.set_background_image(BACKGROUND_IMAGE)
         self.form_main = FormMain(self.screen, 200, 50, 400, 400, EColors.BLACK.value, EColors.WHITE.value, 5, True)
+        
 
     def init(self):
-        
         py.init()
+
 
         while self.running:
             self.clock.tick(self.FPS)
@@ -26,9 +30,7 @@ class Game(LevelConfig):
             if self.form_main.exit:
                 self.running = False
 
-            self.screen.fill(EColors.DARK_GOLDENROD.value)
-
+            self.fill_screen()
             self.form_main.update(events)
-            
             py.display.flip()
         py.quit()

@@ -24,6 +24,7 @@ class LevelOne(LevelConfig):
         self.set_traps()
         self.set_falling_objects()  
         self.pressed_keys = []
+        self.set_music(BACKGROUND_SOUND)
 
     def update(self, list_events):
         super().update(list_events)
@@ -45,6 +46,7 @@ class LevelOne(LevelConfig):
         self.draw_hitbox()
         self.show_time()
         self.complete = self.hero.level_complete
+        
         
     def set_falling_objects(self):
         self.falling_objects = self.create_list_falling_objects(5)

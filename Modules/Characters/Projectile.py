@@ -1,7 +1,8 @@
 from Modules.Characters.Object import Object
+from Modules.Characters.Platform import Platform
 from Modules.Values.Assets import *
 import pygame as py
-import random
+
 
 
 
@@ -27,14 +28,17 @@ class Projectile(Object):
     
     def update(self):
         if self.type == "One":
-            if self.direction == "Right" or self.direction == "Quiet":
-                self.rect_main.x += self.speed
+            if self.direction == "Right":
+                self.rect_main.x += self.speed      #Cambiar por super
             elif self.direction == "Left":
                 self.rect_main.x -= self.speed
         else:
             if self.direction == "Quiet":
                 self.rect_main.x -= self.speed
-            
+        
+        self.all_rects()
+        
 
+            
 
 
