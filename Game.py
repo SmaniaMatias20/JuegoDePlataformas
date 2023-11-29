@@ -16,6 +16,20 @@ class Game(LevelConfig):
         
 
     def init(self):
+        """
+        Brief: Inicializa y ejecuta el bucle principal del juego.
+
+        Descripción:
+            Este método inicializa la biblioteca Pygame y ejecuta el bucle principal del juego.
+            Controla eventos, actualiza la lógica del juego y mantiene la ejecución hasta que
+            se cumple una condición de salida. Luego, finaliza la ejecución y libera los recursos.
+
+        Parametros:
+            Ninguno
+
+        Retorno:
+            Ninguno
+        """
         py.init()
 
 

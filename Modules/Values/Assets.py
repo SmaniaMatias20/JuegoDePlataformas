@@ -1,13 +1,41 @@
 import pygame as py
 import os
 
-def rescale_images(animations: dict, widht: int, high: int):
+def rescale_images(animations: dict, widht: int, height: int):
+    """
+    Brief: Reescala las imágenes en las animaciones a las dimensiones especificadas.
+
+    Descripción:
+        Esta función toma un diccionario de animaciones, donde las claves son nombres de animaciones
+        y los valores son listas de imágenes. Reescala cada imagen en todas las animaciones al ancho
+        y alto especificados.
+
+    Parámetros:
+        - animations (dict): Diccionario de animaciones.
+        - width (int): Nuevo ancho de las imágenes.
+        - height (int): Nuevo alto de las imágenes.
+
+    Retorno:
+        Ninguno
+    """
     for key in animations:
         for i in range(len(animations[key])):
             img = animations[key][i]
-            animations[key][i] = py.transform.scale(img, (widht, high))
+            animations[key][i] = py.transform.scale(img, (widht, height))
 
 def flip_images(images: list):
+    """
+    Brief: Voltea horizontalmente las imágenes en la lista.
+
+    Descripción:
+        Esta función toma una lista de imágenes y las voltea horizontalmente.
+
+    Parámetros:
+        - images (list): Lista de imágenes.
+
+    Retorno:
+        list: Lista de imágenes volteadas horizontalmente.
+    """
     list_images = []
     for i in range(len(images)):
         flip_image = py.transform.flip(images[i],True,False)

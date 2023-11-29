@@ -65,7 +65,8 @@ class FormContainerLevel(Form):
                 self.hijo.update(events)
         else:
             self.level.stop_music()
-            insert_player_data("Modules\Data\scores.db", self.player_name, self.level.hero.points, self.level.type)
+            if self.level.complete:
+                insert_player_data("Modules\Data\scores.db", self.player_name, self.level.hero.points, self.level.type)
             del self.level
             self.end_dialog()
 
