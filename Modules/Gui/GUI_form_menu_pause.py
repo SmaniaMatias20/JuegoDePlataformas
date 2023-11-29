@@ -10,9 +10,6 @@ from Modules.Levels.DriverLevels import *
 from pygame.locals import *
 import pygame
 
-
-
-    
 class FormMenuPause(Form):
     def __init__(self, screen, x,y,w,h,color_background, color_border, active, level, path_image=""):
         super().__init__(screen, x,y,w,h,color_background, color_border, active)
@@ -33,8 +30,6 @@ class FormMenuPause(Form):
                           font_size= 25,
                           path_image= "Modules\Assets\Images\Menu\\table.png"  
                         )
-
-
 
         self._btn_unpause = Button_Image(screen = self._slave, 
                         master_x = self._x,

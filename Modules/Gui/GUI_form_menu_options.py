@@ -19,13 +19,7 @@ class FormMenuOptions(Form):
         aux_image = py.transform.scale(aux_image, (w,h))
         self._slave = aux_image
         self.flag_play = True
-        
-
         self.volumen = 0.1
-        # pygame.mixer.init()
-        # pygame.mixer.music.load(r"Modules\Assets\Music\background.mp3")
-        # pygame.mixer.music.set_volume(self.volumen)
-        # pygame.mixer.music.play(-1)
 
         self._label_tittle = Label(screen=self._slave,
                           x=100,
@@ -107,7 +101,6 @@ class FormMenuOptions(Form):
             py.mixer.music.unpause()
 
         self.flag_play = not self.flag_play
-
 
     def update(self, events):
         if self.verificar_dialog_result():

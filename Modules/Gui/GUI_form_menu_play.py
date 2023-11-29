@@ -23,10 +23,7 @@ class FormMenuPlay(Form):
         aux_image = pygame.transform.scale(aux_image, (w,h))
         self._slave = aux_image
 
-
-
-
-
+        # TextBox Name
         self._box_name = TextBox(screen=self._slave,
                           master_x=x,
                           master_y=y,
@@ -115,6 +112,19 @@ class FormMenuPlay(Form):
         self._slave.fill(self._color_background)
 
     def sanitize_name(self):
+        """
+        Brief: Sanitiza un nombre ingresado en un contexto de interfaz gráfica.
+
+        Descripción:
+            Este método toma el texto ingresado en un cuadro de entrada de la GUI, elimina dígitos numéricos,
+            convierte el texto a formato de título y elimina espacios en blanco al principio y al final.
+
+        Parámetros:
+            Ninguno
+
+        Retorno:
+            str: El nombre sanitizado si no está vacío, de lo contrario, devuelve "N/A".
+        """
         name_entered = self._box_name.get_text()
         cadena = re.sub("[0-9]+", "", name_entered)
         cadena = cadena.title()
@@ -125,9 +135,6 @@ class FormMenuPlay(Form):
         else:
             return "N/A"
  
-
-
-
     def update(self, events):
         if self.verificar_dialog_result():
             for widget in self.lista_widgets:

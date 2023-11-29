@@ -228,9 +228,6 @@ class Hero(Object):
         else:
             self.state = "Quiet"
 
-    # def set_speed(self, speed):
-    #     self.speed = speed
-
     def set_animations(self):
         """
         Brief: Configura las animaciones del héroe.
@@ -396,7 +393,7 @@ class Hero(Object):
         try:
             for fire in boss.list_projectiles:
                 if fire.rect_main.colliderect(self.rect_main) or self.rect_main.colliderect(boss.rect_main):
-                    self.sound_effects(BANG_SOUND, 0.1)
+                    self.sound_effects(SCREAM_SOUND, 0.2)
                     boss.list_projectiles.remove(fire)
                     self.lives -= 1 
                     self.rect_main.x = 0
@@ -487,7 +484,7 @@ class Hero(Object):
                     self.rect_main.y = 400
                     objects.pop(indice)
                     indice -= 1
-                elif objects[indice].type == "Star":
+                elif objects[indice].type == "Star" and self.lives < 3:
                     self.sound_effects(STAR_SOUND, 0.2)
                     self.lives += 1
                     objects.pop(indice)
@@ -511,6 +508,7 @@ class Hero(Object):
         indice = 0
         while indice < len(enemys):
             if self.rect_main.colliderect(enemys[indice].rect_main):
+                self.sound_effects(SCREAM_SOUND, 0.2)
                 self.lives -= 1
                 self.rect_main.x = 0
                 self.rect_main.y = 400

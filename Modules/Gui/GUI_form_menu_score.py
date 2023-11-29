@@ -15,9 +15,8 @@ class FormMenuScore(Form):
         self._slave = aux_image
         self._score = scoreboard
         self.lista_widgets = []
-
         self._margen_y = margen_y
-        #Creo 2 labels y los agrego a la lista de widgets
+
         self.lista_widgets.append(
             Label(screen=self._slave, x=margen_x+10,y=20,w=w/2-margen_x-10,h=50,text = "Players", font="Arial Black",font_size=30,font_color=EColors.BLACK.value,path_image="Modules\Assets\Images\Menu\\table.png"))
         self.lista_widgets.append(
@@ -32,9 +31,6 @@ class FormMenuScore(Form):
         
         pos_inicial_y = margen_y
         
-        #Encapsular esta logica en un metodo. Esto nos permite dibujar la tabla en pantalla
-        
-        
         for j in self._score:
             pos_inicial_x = margen_x
             for n,s in j.items():
@@ -48,9 +44,7 @@ class FormMenuScore(Form):
                 
             pos_inicial_y+=100 + espacio
                 
-        
-        
-        #Crear boton home
+        # Buttom home
         self._btn_home = Button_Image(screen = self._slave, 
         master_x = x, 
         master_y = y, 
@@ -61,8 +55,6 @@ class FormMenuScore(Form):
         path_image = "Modules\Assets\Images\Menu\home.png", 
         onclick = self.btn_home_click, 
         onclick_param = "")
-
-        
 
         self.lista_widgets.append(self._btn_home)
         

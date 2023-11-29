@@ -110,7 +110,9 @@ STAR_SOUND = os.path.join('Modules','Assets', 'Music', 'star.mp3')
 TRAP_SOUND = os.path.join('Modules','Assets', 'Music', 'trap.mp3') 
 GEM_SOUND = os.path.join('Modules','Assets', 'Music', 'gem.mp3')  
 FIRE_SOUND = os.path.join('Modules','Assets', 'Music', 'fire.mp3')   
-BACKGROUND_SOUND = os.path.join('Modules','Assets', 'Music', 'background.mp3')  
+BACKGROUND_SOUND = os.path.join('Modules','Assets', 'Music', 'background.mp3') 
+GAME_SOUND = os.path.join('Modules','Assets', 'Music', 'game.mp3')  
+SCREAM_SOUND = os.path.join('Modules','Assets', 'Music', 'scream.mp3')
 
 
 

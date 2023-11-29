@@ -134,7 +134,7 @@ class LevelConfig:
         Retorno:
             Ninguno
         """
-        font = py.font.SysFont('Arial Black', 25)
+        font = py.font.SysFont('Arial Black', 25, True)
         text = font.render(f"score: {text}", True, EColors.WHITE.value)
         self.screen.blit(text, (self.screen.get_width() - 200, self.screen.get_height() - 490))
   
@@ -229,7 +229,7 @@ class LevelConfig:
         Retorno:
             Ninguno
         """
-        self.music.play()
+        self.music.play(-1)
 
     def stop_music(self):
         """
@@ -326,7 +326,7 @@ class LevelConfig:
         Retorno:
             pygame.Surface: Superficie que representa el texto creado.
         """
-        my_font = py.font.SysFont(font, size)
+        my_font = py.font.SysFont(font, size, True)
         created_message = my_font.render(message, 0, color)
 
         return created_message

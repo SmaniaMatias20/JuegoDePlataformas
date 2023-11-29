@@ -37,7 +37,7 @@ class LevelOne(LevelConfig):
         self.set_traps()
         self.set_falling_objects()  
         self.pressed_keys = []
-        self.set_music(BACKGROUND_SOUND)
+        self.set_music(GAME_SOUND)
 
     def update(self, list_events):
         """
@@ -67,8 +67,8 @@ class LevelOne(LevelConfig):
         for enemy in self.enemys:
             enemy.update(self.screen)
 
-        self.blit_falling_objects()
         self.hero.update(self.screen, self.pressed_keys, self.platforms, self.items, self.enemys, self.traps, self.falling_objects)
+        self.blit_falling_objects()
         self.show_score(f"{self.hero.points}")
         self.draw_hitbox()
         self.show_time()

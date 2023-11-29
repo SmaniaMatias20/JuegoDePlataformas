@@ -9,8 +9,20 @@ import sys
 
 class Game(LevelConfig):
     def __init__(self, size):
+        """
+        Brief: Constructor de la clase que inicializa la instancia.
+
+        Descripción:
+            Este constructor llama al constructor de la clase base con el tamaño especificado.
+            Además, inicializa los atributos 'screen' y 'form_main' con valores predeterminados.
+
+        Parámetros:
+            - size: Tamaño de la ventana del juego.
+
+        Retorno:
+            Ninguno
+        """
         super().__init__(size)
-        self.screen
         self.set_background_image(BACKGROUND_IMAGE)
         self.form_main = FormMain(self.screen, 200, 50, 400, 400, EColors.BLACK.value, EColors.WHITE.value, 5, True)
         

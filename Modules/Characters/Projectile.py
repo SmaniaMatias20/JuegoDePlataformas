@@ -38,7 +38,8 @@ class Projectile(Object):
             super().__init__(size, position, self.current_animation) 
             self.direction = direction
             self.set_speed(7)
-            
+
+        
     
     def update(self):
         """

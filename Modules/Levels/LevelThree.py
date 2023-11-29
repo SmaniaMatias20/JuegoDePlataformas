@@ -38,7 +38,7 @@ class LevelThree(LevelConfig):
         self.set_falling_objects()  
         self.set_boss()
         self.pressed_keys = []
-        self.set_music(BACKGROUND_SOUND)
+        self.set_music(GAME_SOUND)
 
     def update(self, list_events):
         """
@@ -76,8 +76,8 @@ class LevelThree(LevelConfig):
                 self.boss = None
 
 
-        self.blit_falling_objects()
         self.hero.update(self.screen, self.pressed_keys, self.platforms, self.items, self.enemys, self.traps, self.falling_objects, self.boss)
+        self.blit_falling_objects()
         self.show_score(f"{self.hero.points}")
         self.draw_hitbox()
         self.show_time()

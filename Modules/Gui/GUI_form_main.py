@@ -25,8 +25,6 @@ class FormMain(Form):
         pygame.mixer.music.set_volume(self.volume)
         pygame.mixer.music.play(-1)
         
-
-
         self._label_main = Label(screen=self._slave,
                           x=100,
                           y=40,
@@ -54,7 +52,7 @@ class FormMain(Form):
                                             "Arial Black",
                                             25)
         
-        # # Button Levels
+        # Button Levels
         self.btn_levels = Button_Image(self._slave, 
                                             x, 
                                             y, 
