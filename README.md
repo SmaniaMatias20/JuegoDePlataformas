@@ -15,7 +15,7 @@ Imagenes
 
 Descripcion del proyecto
 
-El proyecto---
+Es un proyecto realizado en Python con la libreria Pygame. El juego cuenta con un menu para acceder a la configuracion, puntuaciones y distintos niveles. Cada nivel tiene distinta dificultad y distintos objetivos. Para el manejo de datos utilizamos SQlite3.
 
 
 Link al video del proyecto
