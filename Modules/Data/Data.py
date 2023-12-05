@@ -55,6 +55,8 @@ def insert_player_data(db_path, player_name, player_score, level_type):
             connection.execute(sentence)
         except sqlite3.OperationalError as e:
             print(f"Error: {e}")
+        except Exception as exc:
+            print(f"Error: {exc}")
 
 def get_top_scores(db_path):
     """
@@ -78,3 +80,5 @@ def get_top_scores(db_path):
             return result
         except sqlite3.OperationalError as e:
             print(f"Error: {e}")
+        except Exception as exc:
+            print(f"Error: {exc}")

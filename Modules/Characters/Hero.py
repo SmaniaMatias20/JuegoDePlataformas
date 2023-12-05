@@ -400,7 +400,9 @@ class Hero(Object):
                     self.rect_main.y = 400 
 
             self.kill_boss(boss)
-        except AttributeError as e:
+        except AttributeError:
+            pass
+        except Exception:
             pass
 
 
@@ -563,6 +565,8 @@ class Hero(Object):
                         del boss
         except UnboundLocalError as e:
             print(f"Error: {e}") 
+        except Exception as exc:
+            print(f"Error: {exc}")
 
 
 
