@@ -3,8 +3,7 @@ Documentacion
 
 Integrantes
 
-- Smania Matias
-- 40910931
+- Matias Ezequiel Smania
 
 Proyecto: Segundo parcial Prog/Labo I
 
