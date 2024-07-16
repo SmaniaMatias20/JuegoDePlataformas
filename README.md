@@ -1,28 +1,34 @@
-Documentacion
-----------------------------
+# Segundo Parcial Prog/Labo I
 
-Integrantes
+## Integrantes
 
 - Matias Ezequiel Smania
 
-Proyecto: Segundo parcial Prog/Labo I
+## Descripción del Proyecto
 
-Descripcion del proyecto
+Este proyecto es un juego desarrollado en Python utilizando la librería Pygame. El juego cuenta con un menú principal que permite acceder a varias funcionalidades:
 
-Es un proyecto realizado en Python con la libreria Pygame. El juego cuenta con un menu para acceder a la configuracion, puntuaciones y distintos niveles. Cada nivel tiene distinta dificultad y distintos objetivos. Para el manejo de datos utilizamos SQlite3.
+- **Configuración**: Personaliza la experiencia del juego.
+- **Puntuaciones**: Consulta las mejores puntuaciones obtenidas.
+- **Niveles**: Selecciona entre distintos niveles, cada uno con su propia dificultad y objetivos.
 
+Para el manejo de datos, el juego utiliza SQLite3, garantizando un almacenamiento eficiente y seguro de las puntuaciones y configuraciones del usuario.
 
-Link al video del proyecto
-----------------------------
+## Tecnologías Utilizadas
 
-https://youtu.be/P4oPIZIw884?si=9jqSb1dBddVZfBuc
+- **Lenguaje de Programación**: Python
+- **Librería Gráfica**: Pygame
+- **Base de Datos**: SQLite3
 
+## Link al Video del Proyecto
 
-Imagenes
-----------------------------
-![](https://github.com/SmaniaMatias20/SegundoParcialProg/blob/master/Modules/Assets/Images/menu.png)
-![](https://github.com/SmaniaMatias20/SegundoParcialProg/blob/master/Modules/Assets/Images/level_one.png)
-![](https://github.com/SmaniaMatias20/SegundoParcialProg/blob/master/Modules/Assets/Images/level_two.png)
-![](https://github.com/SmaniaMatias20/SegundoParcialProg/blob/master/Modules/Assets/Images/level_three.png)
+[Ver video del proyecto](https://youtu.be/P4oPIZIw884?si=9jqSb1dBddVZfBuc)
+
+## Imágenes
+
+![Menú Principal](https://github.com/SmaniaMatias20/SegundoParcialProg/blob/master/Modules/Assets/Images/menu.png)
+![Nivel Uno](https://github.com/SmaniaMatias20/SegundoParcialProg/blob/master/Modules/Assets/Images/level_one.png)
+![Nivel Dos](https://github.com/SmaniaMatias20/SegundoParcialProg/blob/master/Modules/Assets/Images/level_two.png)
+![Nivel Tres](https://github.com/SmaniaMatias20/SegundoParcialProg/blob/master/Modules/Assets/Images/level_three.png)
 
 
